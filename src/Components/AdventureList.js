@@ -25,7 +25,6 @@ const AdventureList = () => {
           ))}
         </div>
       )}
-
       {adventures.length === 0 && <h3>There are no adventures!</h3>}
     </>
   );
