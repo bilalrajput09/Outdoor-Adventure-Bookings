@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { login } from '../redux/slice/userSlice';
 
@@ -44,8 +44,8 @@ function LoginForm() {
             Login
           </button>
           <p>{isLoginError && error}</p>
-          <p onClick={() => navigate('/signup')}>
-            Don't have an account? Signup.
+          <p>
+            Don't have an account? <Link to={'/signup'}>Sign up</Link>.
           </p>
         </form>
         {/* Display login message if login is successful */}
