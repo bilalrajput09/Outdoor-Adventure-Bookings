@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -8,10 +8,9 @@ function LoginForm() {
   // Extracting user-related state and functions from Redux
   const { user, error, isAuthenticated, isLoginSuccess, isLoginError } =
     useSelector((store) => store.user);
-
+  const myInputRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
   const loginMessage = useSelector((state) => state.user.message);
 
   useEffect(() => {
@@ -21,26 +20,26 @@ function LoginForm() {
     }
   }, [dispatch, isAuthenticated, isLoginSuccess, user, isLoginError]);
 
-  const handleLogin = async () => {
+  const handleLogin = (event) => {
     // Dispatch the login action with the entered username
-    dispatch(login(username));
+    event.preventDefault();
+    dispatch(login(myInputRef.current.value));
   };
 
   return (
     <div className="container mt-5">
       <div className="row d-flex justify-content-center">
-        <form className="col-8">
+        <form className="col-8" onSubmit={handleLogin}>
           <h1 className="mb-5">Login</h1>
           <div className="mb-3">
             <input
               type="text"
               className="col-8 form-control"
               placeholder="Enter username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              ref={myInputRef}
             />
           </div>
-          <button onClick={handleLogin} className="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Login
           </button>
           <p>{isLoginError && error}</p>
