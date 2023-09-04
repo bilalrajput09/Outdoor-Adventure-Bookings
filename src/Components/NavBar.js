@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../redux/slice/userSlice";
 
 const NavBar = () => {
@@ -9,18 +9,24 @@ const NavBar = () => {
   const logOutUser = () => {
     dispatch(logout());
     navigate("/login");
-    localStorage.removeItem('id');
+    localStorage.removeItem("id");
   };
   return (
     <>
-      <button
-        className="mt-5"
-        type="button"
-        aria-controls="offcanvasScrolling"
-        onClick={logOutUser}
-      >
-        Sign out
-      </button>
+      <div className="position-absolute top-0 end-0 m-10 cursor-pointer">
+        <div
+          className="text-center position-relative m-4  cursor-pointer"
+          onClick={logOutUser}
+        >
+          <img
+            src="/log-out.png"
+            className="text-center position-relative justify-content-end mt"
+            alt="Log Out"
+            style={{ cursor: "pointer" }}
+          />
+          <p><b>Sign <br/> Out</b></p>
+        </div>
+      </div>
 
       <div
         className="offcanvas offcanvas-start"

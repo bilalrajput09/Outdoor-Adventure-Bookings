@@ -25,7 +25,7 @@ const AdventureList = () => {
 
   return (
     <>
-      <h1 className="text-center mb-5">Latest Adventures</h1>
+      <h1 className="text-center mt-4">Latest Adventures</h1>
       {adventures.length > 0 && (
         <div className="row row-cols-1 row-cols-md-3 g-4 mt-5">
           {adventures.map((adventure) => (
