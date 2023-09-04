@@ -24,7 +24,7 @@ const NavBar = () => {
             alt="Log Out"
             style={{ cursor: "pointer" }}
           />
-          <p><b>Sign <br/> Out</b></p>
+          <p><b>S-out</b></p>
         </div>
       </div>
 

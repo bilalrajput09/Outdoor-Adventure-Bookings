@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Dropdown } from "react-bootstrap";
 
 function CreateAdventuresForm() {
@@ -27,6 +27,21 @@ function CreateAdventuresForm() {
     e.preventDefault();
   };
 
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // Load adventure categories data from JSON file
+  useEffect(() => {
+    fetch("./adventure_categories.json") // Replace with the correct path
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((error) => {
+        console.error("Error loading adventure categories:", error);
+      });
+  }, []);
+
   return (
     <>
       <div className="container-fluid vh-100 d-flex justify-content-center align-items-center mb-5">
@@ -51,7 +66,7 @@ function CreateAdventuresForm() {
             <Form.Control
               type="text"
               name="name"
-              placeholder="Name your adventure"
+              placeholder="Name your adventure (Optional)"
               value={formData.name}
               onChange={handleChange}
               style={{
@@ -77,18 +92,15 @@ function CreateAdventuresForm() {
                 varient="primary"
                 id="dropdown-basic"
               >
-                {formData.selectedPicture ? (
-                  <>
-                    <img
-                      src="/log-out.png"
-                      alt="My Image"
-                      style={{ marginRight: "1rem" }}
-                    />
-                    {formData.selectedPicture}
-                  </>
-                ) : (
-                  <>Select a suitable image.</>
-                )}
+                {selectedCategory
+                  ? selectedCategory.name
+                  : "Select an Adventure"}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <img
+                  style={{ marginLeft: "1rem" }}
+                  src={selectedCategory.image_url}
+                  alt={selectedCategory.image_alt}
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu
                 className="container"
@@ -100,24 +112,15 @@ function CreateAdventuresForm() {
                   fontSize: "1.3rem",
                 }}
               >
-                <Dropdown.Item
-                  onClick={() => handleDropdownSelect("Option - 1")}
-                >
-                  <img src="/log-out.png" alt="My Image" />
-                  &nbsp; Option 1
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => handleDropdownSelect("Option - 2")}
-                >
-                  <img src="/log-out.png" alt="My Image" />
-                  &nbsp; Option 2
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => handleDropdownSelect("Option - 3")}
-                >
-                  <img src="/log-out.png" alt="My Image" />
-                  &nbsp; Option 3
-                </Dropdown.Item>
+                {categories.map((category) => (
+                  <Dropdown.Item
+                    key={category.name}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    <img src={category.image_url} alt={category.image_alt} />
+                    &nbsp;{category.name}
+                  </Dropdown.Item>
+                ))}
               </Dropdown.Menu>
             </Dropdown>
           </Form.Group>
@@ -126,7 +129,7 @@ function CreateAdventuresForm() {
               as="textarea"
               rows={4}
               name="description"
-              placeholder="Few descriptions"
+              placeholder="Few descriptions (Optional)"
               value={formData.message}
               onChange={handleChange}
               style={{
