@@ -15,7 +15,7 @@ function RegisterForm() {
   useEffect(() => {
     // Redirect to the adventures page if successfully registered and not facing signup error
     if (isAuthenticated && !isSignupError) {
-      navigate("/adventures");
+      navigate("/");
     }
   }, [dispatch, isAuthenticated, isSignupSuccess, user, isSignupError]);
 

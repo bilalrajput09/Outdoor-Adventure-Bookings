@@ -12,22 +12,9 @@ const NavBar = () => {
   };
   return (
     <>
-
       <button
         className="mt-5"
         type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasScrolling"
-        aria-controls="offcanvasScrolling"
-      >
-        Click Me!
-      </button>
-      
-      <button
-        className="mt-5"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasScrolling"
         aria-controls="offcanvasScrolling"
         onClick={logOutUser}
       >

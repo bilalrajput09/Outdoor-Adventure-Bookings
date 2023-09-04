@@ -17,7 +17,7 @@ function LoginForm() {
   useEffect(() => {
     // Redirect to the adventures page if successfully logged in and not facing login error
     if (isAuthenticated && !isLoginError) {
-      navigate("/adventures");
+      navigate("/");
     }
   }, [dispatch, isAuthenticated, isLoginSuccess, user, isLoginError]);
 
