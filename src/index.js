@@ -12,6 +12,7 @@ import RootComponent from './root/RootComponent';
 import LoginForm from './Components/LoginForm';
 import RegisterForm from './Components/RegisterForm';
 import AdventureShow from './Components/AdventureShow';
+import CreateAdventuresForm from './Components/CreateAdventuresForm';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: '/adventures/:id', element: <AdventureShow /> },
       { path: 'signup', element: <RegisterForm /> },
       { path: 'login', element: <LoginForm /> },
+      { path: 'addAdventure', element: <CreateAdventuresForm /> },
     ],
   },
 ]);
