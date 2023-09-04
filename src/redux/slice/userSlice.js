@@ -1,21 +1,18 @@
-import {
-  createSlice,
-  createAsyncThunk,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Initial state for the userSlice
 const initialState = {
-  user: null,                       // User information
-  error: null,                      // General error
-  message: "",                       // General message
-  isAuthenticated: false,           // Authentication status
-  isSignupLoading: false,           // Loading state for signup
-  isSignupSuccess: false,           // Signup success status
-  isSignupError: false,             // Signup error status
-  isLoginLoading: false,            // Loading state for login
-  isLoginSuccess: false,            // Login success status
-  isLoginError: false,              // Login error status
+  user: null, // User information
+  error: null, // General error
+  message: "", // General message
+  isAuthenticated: false, // Authentication status
+  isSignupLoading: false, // Loading state for signup
+  isSignupSuccess: false, // Signup success status
+  isSignupError: false, // Signup error status
+  isLoginLoading: false, // Loading state for login
+  isLoginSuccess: false, // Login success status
+  isLoginError: false, // Login error status
 };
 
 // Async action to log in a user
@@ -37,7 +34,8 @@ export const signup = createAsyncThunk("user/signup", async (username) => {
     const response = await axios.post("http://127.0.0.1:3000/api/v1/signup", {
       username,
     });
-    console.log(response.status); // Logging the response status
+    const user = response.data;
+    localStorage.setItem("id", JSON.stringify(user.user));
 
     return response.data; // Successful response data
   } catch (error) {
@@ -55,6 +53,12 @@ const userSlice = createSlice({
       ...state,
       user: null,
       isAuthenticated: false,
+    }),
+    authenticateUser: (state, action) => ({
+      ...state,
+      user: action.payload,
+      isAuthenticated: true,
+      isLoginError: false,
     }),
   },
   extraReducers: (builder) => {
@@ -112,7 +116,7 @@ const userSlice = createSlice({
 });
 
 // Export the 'logout' action from the slice
-export const { logout } = userSlice.actions;
+export const { logout, authenticateUser } = userSlice.actions;
 
 // Export the userSlice reducer
 export default userSlice.reducer;

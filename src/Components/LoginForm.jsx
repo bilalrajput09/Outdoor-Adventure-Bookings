@@ -21,6 +21,13 @@ function LoginForm() {
     }
   }, [dispatch, isAuthenticated, isLoginSuccess, user, isLoginError]);
 
+//   check if there is a user in the localstorate in mount and authenticate that user
+//   useEffect(() => {
+//     if (localStorage.getItem("id") !== null) {
+//       dispatch(authenticateUser({ payload: localStorage.getItem("id") }));
+//     }
+//   }, [dispatch]);
+
   const handleLogin = async () => {
     // Dispatch the login action with the entered username
     dispatch(login(username));
@@ -40,7 +47,7 @@ function LoginForm() {
 
         {/* Display login message if login is successful */}
         <p>{isLoginSuccess && loginMessage}</p>
-        
+
         {/* Display error message if login fails */}
         <p>{isLoginError && error}</p>
       </div>

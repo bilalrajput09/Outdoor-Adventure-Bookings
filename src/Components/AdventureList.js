@@ -19,7 +19,7 @@ const AdventureList = () => {
 
   // Redirect to the login page if the user is not authenticated
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (localStorage.getItem('id') !== null || !isAuthenticated) {
       navigate("/login");
     }
   }, [isAuthenticated]);
