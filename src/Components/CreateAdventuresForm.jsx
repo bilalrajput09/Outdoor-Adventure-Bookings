@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Dropdown } from "react-bootstrap";
 
+// CreateAdventuresForm component for adding adventures
 function CreateAdventuresForm() {
+  // State variables for categories and selected category
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // State variable for form data (name, selected picture, description)
   const [formData, setFormData] = useState({
     name: "",
     selectedPicture: "",
     description: "",
   });
 
-  const handleChange = (e) => {
+  // Event handler for adventure name input
+  const handleAdventureNameChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -16,23 +23,34 @@ function CreateAdventuresForm() {
     });
   };
 
-  const handleDropdownSelect = (selectedPicture) => {
+  // Event handler for adventure description input
+  const handleAdventureDescriptionChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      selectedPicture,
+      [name]: value,
     });
   };
 
+  // Effect to update form data when selectedCategory changes
+  useEffect(() => {
+    selectedCategory &&
+      setFormData({
+        name: selectedCategory.name,
+        selectedPicture: selectedCategory.image_url,
+        description: selectedCategory.description,
+      });
+  }, [selectedCategory]);
+
+  // Form submission handler (not yet implemented)
   const handleSubmit = (e) => {
     e.preventDefault();
+    // I'm going to put submission logic here
   };
 
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  // Load adventure categories data from JSON file
+  // Effect to load adventure categories data from a JSON file
   useEffect(() => {
-    fetch("./adventure_categories.json") // Replace with the correct path
+    fetch("./adventure_categories.json")
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
@@ -42,6 +60,7 @@ function CreateAdventuresForm() {
       });
   }, []);
 
+  // JSX rendering for the component
   return (
     <>
       <div className="container-fluid vh-100 d-flex justify-content-center align-items-center mb-5">
@@ -49,6 +68,7 @@ function CreateAdventuresForm() {
           onSubmit={handleSubmit}
           className="container justify-content-center"
         >
+          {/* Form title */}
           <Form.Label
             className="text-center container"
             style={{
@@ -62,13 +82,15 @@ function CreateAdventuresForm() {
           >
             Add Adventures
           </Form.Label>
+
+          {/* Adventure name input */}
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
               name="name"
-              placeholder="Name your adventure (Optional)"
+              placeholder="Adventure name (Optional)"
               value={formData.name}
-              onChange={handleChange}
+              onChange={handleAdventureNameChange}
               style={{
                 backgroundColor: "#fff",
                 color: "#d35504",
@@ -78,13 +100,15 @@ function CreateAdventuresForm() {
               }}
             />
           </Form.Group>
+
+          {/* Dropdown for selecting adventure category */}
           <Form.Group className="mb-3">
             <Dropdown>
               <Dropdown.Toggle
-                className="container"
+                className="container d-flex justify-content-between"
                 style={{
                   backgroundColor: "#fff",
-                  color: "inherit",
+                  color: "#d35504",
                   fontWeight: "600",
                   borderColor: "#d35504",
                   fontSize: "1.3rem",
@@ -92,15 +116,19 @@ function CreateAdventuresForm() {
                 varient="primary"
                 id="dropdown-basic"
               >
-                {selectedCategory
-                  ? selectedCategory.name
-                  : "Select an Adventure"}
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <img
-                  style={{ marginLeft: "1rem" }}
-                  src={selectedCategory.image_url}
-                  alt={selectedCategory.image_alt}
-                />
+                <span>
+                  {selectedCategory
+                    ? selectedCategory.name
+                    : "Select an Adventure"}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {selectedCategory && (
+                    <img
+                      style={{ marginLeft: "1rem" }}
+                      src={selectedCategory.image_url}
+                      alt={selectedCategory.name}
+                    />
+                  )}
+                </span>
               </Dropdown.Toggle>
               <Dropdown.Menu
                 className="container"
@@ -112,6 +140,7 @@ function CreateAdventuresForm() {
                   fontSize: "1.3rem",
                 }}
               >
+                {/* Map adventure categories as dropdown options */}
                 {categories.map((category) => (
                   <Dropdown.Item
                     key={category.name}
@@ -124,23 +153,27 @@ function CreateAdventuresForm() {
               </Dropdown.Menu>
             </Dropdown>
           </Form.Group>
+
+          {/* Adventure description input */}
           <Form.Group className="mb-3">
             <Form.Control
               as="textarea"
               rows={4}
               name="description"
               placeholder="Few descriptions (Optional)"
-              value={formData.message}
-              onChange={handleChange}
+              value={formData.description}
+              onChange={handleAdventureDescriptionChange}
               style={{
                 backgroundColor: "#fff",
-                color: "#d35504",
+                color: "dark-gray",
                 fontWeight: "600",
                 borderColor: "#d35504",
                 fontSize: "1.3rem",
               }}
             />
           </Form.Group>
+
+          {/* Submit button */}
           <Button
             className="container"
             type="submit"
