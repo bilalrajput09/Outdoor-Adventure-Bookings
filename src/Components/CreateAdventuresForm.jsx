@@ -79,7 +79,11 @@ function CreateAdventuresForm() {
               >
                 {formData.selectedPicture ? (
                   <>
-                    <i className="bi bi-person" />
+                    <img
+                      src="/log-out.png"
+                      alt="My Image"
+                      style={{ marginRight: "1rem" }}
+                    />
                     {formData.selectedPicture}
                   </>
                 ) : (
@@ -99,17 +103,20 @@ function CreateAdventuresForm() {
                 <Dropdown.Item
                   onClick={() => handleDropdownSelect("Option - 1")}
                 >
-                  <i className="bi bi-person" /> Option 1
+                  <img src="/log-out.png" alt="My Image" />
+                  &nbsp; Option 1
                 </Dropdown.Item>
                 <Dropdown.Item
                   onClick={() => handleDropdownSelect("Option - 2")}
                 >
-                  <i className="bi bi-person" /> Option 1
+                  <img src="/log-out.png" alt="My Image" />
+                  &nbsp; Option 2
                 </Dropdown.Item>
                 <Dropdown.Item
                   onClick={() => handleDropdownSelect("Option - 3")}
                 >
-                  <i className="bi bi-person" /> Option 1
+                  <img src="/log-out.png" alt="My Image" />
+                  &nbsp; Option 3
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -139,7 +146,6 @@ function CreateAdventuresForm() {
               borderColor: "#d35504",
               backgroundColor: "#d35504",
               fontSize: "2rem",
-              opacity: 0.3,
             }}
           >
             Submit
