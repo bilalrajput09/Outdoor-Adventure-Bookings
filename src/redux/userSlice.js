@@ -18,6 +18,19 @@ const initialState = {
   isLoginError: false,              // Login error status
 };
 
+// Async action to log in a user
+export const login = createAsyncThunk("user/login", async (username) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:3000/api/v1/login", {
+      username,
+    });
+
+    return response.data; // Successful response data
+  } catch (error) {
+    throw error.message; // Throwing error message on failure
+  }
+});
+
 // Async action to sign up a user
 export const signup = createAsyncThunk("user/signup", async (username) => {
   try {
@@ -45,6 +58,32 @@ const userSlice = createSlice({
     }),
   },
   extraReducers: (builder) => {
+    // Reducer cases for the 'login' action
+    builder.addCase(login.pending, (state) => {
+      // Set loading flags for login
+      state.isLoginLoading = true;
+      state.isLoginSuccess = false;
+      state.isLoginError = false;
+    });
+    builder.addCase(login.fulfilled, (state, action) => {
+      // Update state on successful login
+      state.isAuthenticated = true;
+      state.isLoginLoading = false;
+      state.isLoginSuccess = true;
+      state.isLoginError = false;
+      state.user = action.payload.user;
+      state.message = action.payload.message;
+      state.error = null;
+    });
+    builder.addCase(login.rejected, (state, action) => {
+      // Update state on login failure
+      state.isAuthenticated = false;
+      state.isLoginSuccess = false;
+      state.isLoginLoading = false;
+      state.isLoginError = true;
+      state.error = "Login failed. Please check your username.";
+    });
+
     // Reducer cases for the 'signup' action
     builder.addCase(signup.pending, (state) => {
       // Set loading flags for signup
