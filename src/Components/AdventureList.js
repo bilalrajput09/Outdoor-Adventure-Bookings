@@ -24,7 +24,9 @@ const AdventureList = () => {
   }, [dispatch, navigate, isAuthenticated, user]);
 
   // handle adding adventure categories
-  function handleAddAdventureButtonClick() {}
+  function handleAddAdventureButtonClick() {
+    navigate("/addAdventure");
+  }
 
   return (
     <>
@@ -36,7 +38,7 @@ const AdventureList = () => {
           style={{
             backgroundColor: "#97bf0f",
             color: "#fff",
-            fontWeight: '400',
+            fontWeight: "400",
             borderColor: "#97bf0f",
             fontSize: "2rem",
           }}
