@@ -1,4 +1,15 @@
+import { useNavigate } from "react-router-dom";
+import { useDispatch} from "react-redux";
+import { logout } from "../redux/slice/userSlice";
+
 const NavBar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logOutUser = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
   return (
     <>
       <button
@@ -35,6 +46,7 @@ const NavBar = () => {
             Try scrolling the rest of the page to see this option in action.
           </p>
         </div>
+        <p onClick={logOutUser}>Sign out</p>
       </div>
     </>
   );
