@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { signup } from '../redux/slice/userSlice';
 import { useEffect } from 'react';
+import { checkCurrentUser } from '../App';
 
 function RegisterForm() {
   // Extracting user-related state and functions from Redux
@@ -14,6 +15,9 @@ function RegisterForm() {
   const myInputRef = useRef();
 
   useEffect(() => {
+    if (checkCurrentUser()) {
+      navigate('/');
+    }
     // Redirect to the adventures page if successfully registered and not facing signup error
     if (isAuthenticated && !isSignupError) {
       navigate('/');

@@ -3,17 +3,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { login } from '../redux/slice/userSlice';
+import { checkCurrentUser } from '../App';
 
 function LoginForm() {
   // Extracting user-related state and functions from Redux
+
   const { user, error, isAuthenticated, isLoginSuccess, isLoginError } =
     useSelector((store) => store.user);
   const myInputRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const loginMessage = useSelector((state) => state.user.message);
 
   useEffect(() => {
+    if (checkCurrentUser()) {
+      navigate('/');
+    }
     // Redirect to the adventures page if successfully logged in and not facing login error
     if (isAuthenticated && !isLoginError) {
       navigate('/');
