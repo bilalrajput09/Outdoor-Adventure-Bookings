@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import fetchAdventuresData from "../redux/adventureActions";
-import Adventure from "./Adventure";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import fetchAdventuresData from '../redux/adventureActions';
+import Adventure from './Adventure';
 
 const AdventureList = () => {
   const dispatch = useDispatch();
@@ -13,16 +13,15 @@ const AdventureList = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   // Fetch adventure data from the server on component mount
+  const user = localStorage.getItem('id');
   useEffect(() => {
     dispatch(fetchAdventuresData());
-  }, [dispatch]);
-
-  // Redirect to the login page if the user is not authenticated
-  useEffect(() => {
-    if (localStorage.getItem('id') !== null || !isAuthenticated) {
-      navigate("/login");
+    if (!isAuthenticated && user === null) {
+      navigate('/login');
+    } else if (user) {
+      navigate('/');
     }
-  }, [isAuthenticated]);
+  }, [dispatch]);
 
   return (
     <>

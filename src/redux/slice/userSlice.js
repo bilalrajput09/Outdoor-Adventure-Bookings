@@ -1,11 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 // Initial state for the userSlice
 const initialState = {
   user: null, // User information
   error: null, // General error
-  message: "", // General message
+  message: '', // General message
   isAuthenticated: false, // Authentication status
   isSignupLoading: false, // Loading state for signup
   isSignupSuccess: false, // Signup success status
@@ -16,36 +16,39 @@ const initialState = {
 };
 
 // Async action to log in a user
-export const login = createAsyncThunk("user/login", async (username) => {
+export const login = createAsyncThunk('user/login', async (username) => {
   try {
-    const response = await axios.post("http://127.0.0.1:3000/api/v1/login", {
+    const response = await axios.post('http://127.0.0.1:3000/api/v1/login', {
       username,
     });
-
+    setUserInLocalStorage(response.data);
     return response.data; // Successful response data
   } catch (error) {
     throw error.message; // Throwing error message on failure
   }
 });
 
+const setUserInLocalStorage = (user) => {
+  localStorage.setItem('id', JSON.stringify(user));
+};
+
 // Async action to sign up a user
-export const signup = createAsyncThunk("user/signup", async (username) => {
+export const signup = createAsyncThunk('user/signup', async (username) => {
   try {
-    const response = await axios.post("http://127.0.0.1:3000/api/v1/signup", {
+    const response = await axios.post('http://127.0.0.1:3000/api/v1/signup', {
       username,
     });
     const user = response.data;
-    localStorage.setItem("id", JSON.stringify(user.user));
-
+    setUserInLocalStorage(user.user);
     return response.data; // Successful response data
   } catch (error) {
-    throw new Error("Signup failed. Please check your username."); // Throwing custom error message on failure
+    throw new Error('Signup failed. Please check your username.'); // Throwing custom error message on failure
   }
 });
 
 // Redux slice to manage user-related state
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     // Reducer to log out a user
@@ -85,7 +88,7 @@ const userSlice = createSlice({
       state.isLoginSuccess = false;
       state.isLoginLoading = false;
       state.isLoginError = true;
-      state.error = "Login failed. Please check your username.";
+      state.error = 'Login failed. Please check your username.';
     });
 
     // Reducer cases for the 'signup' action
@@ -110,7 +113,7 @@ const userSlice = createSlice({
       state.isSignupSuccess = false;
       state.isSignupLoading = false;
       state.isSignupError = true;
-      state.error = "Signup failed. Please check your username.";
+      state.error = 'Signup failed. Please check your username.';
     });
   },
 });
