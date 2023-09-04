@@ -14,25 +14,23 @@ function App() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<RegisterForm />} />
-          {isAuthenticated ? (
-            <Route element={<Layout />}>
-              <Route path="/" element={<AdventureList />} />
-              <Route path="/adventures" element={<AdventureList />} />
-              <Route path="/reservations" element={<Reservations />} />
-            </Route>
-          ) : (
-            <>
-              <Route path="/" element={<LoginForm />} />
-            </>
-          )}
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<RegisterForm />} />
+        {isAuthenticated ? (
+          <Route element={<Layout />}>
+            <Route path="/" element={<AdventureList />} />
+            <Route path="/adventures" element={<AdventureList />} />
+            <Route path="/reservations" element={<Reservations />} />
+          </Route>
+        ) : (
+          <>
+            <Route path="/" element={<LoginForm />} />
+          </>
+        )}
+      </Routes>
+    </Router>
   );
 }
 

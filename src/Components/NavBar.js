@@ -12,6 +12,7 @@ const NavBar = () => {
   };
   return (
     <>
+
       <button
         className="mt-5"
         type="button"
@@ -20,6 +21,17 @@ const NavBar = () => {
         aria-controls="offcanvasScrolling"
       >
         Click Me!
+      </button>
+      
+      <button
+        className="mt-5"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasScrolling"
+        aria-controls="offcanvasScrolling"
+        onClick={logOutUser}
+      >
+        Sign out
       </button>
 
       <div
@@ -46,7 +58,6 @@ const NavBar = () => {
             Try scrolling the rest of the page to see this option in action.
           </p>
         </div>
-        <p onClick={logOutUser}>Sign out</p>
       </div>
     </>
   );
