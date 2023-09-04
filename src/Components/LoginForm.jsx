@@ -18,7 +18,7 @@ function LoginForm() {
     if (isAuthenticated && !isLoginError) {
       navigate('/');
     }
-  }, [dispatch, isAuthenticated, isLoginSuccess, user, isLoginError]);
+  }, [dispatch, isAuthenticated, isLoginSuccess, user, isLoginError, navigate]);
 
   const handleLogin = (event) => {
     // Dispatch the login action with the entered username

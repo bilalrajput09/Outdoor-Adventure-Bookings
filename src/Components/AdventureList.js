@@ -21,7 +21,7 @@ const AdventureList = () => {
     } else if (user) {
       navigate('/');
     }
-  }, [dispatch]);
+  }, [dispatch, navigate, isAuthenticated, user]);
 
   return (
     <>
