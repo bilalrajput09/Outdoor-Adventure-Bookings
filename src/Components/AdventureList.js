@@ -16,6 +16,7 @@ const AdventureList = () => {
     fetch("http://127.0.0.1:3000/api/v1/adventures")
       .then((response) => response.json())
       .then((data) => {
+        data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setAdventures(data);
       })
       .catch((error) => {
@@ -63,7 +64,7 @@ const AdventureList = () => {
           }}
           onClick={handleAddAdventureButtonClick}
         >
-          Add Yours'
+          New Adventure!
         </button>
         <p className="font-weight-bold fs-3 mt-4 ">
           Here, you also get to design your own{" "}
@@ -98,7 +99,25 @@ const AdventureList = () => {
         </div>
       )}
       {/* Display a message if there are no adventures */}
-      {adventures.length === 0 && <h3>There are no adventures!</h3>}
+      {adventures.length === 0 && (
+        <div className="row row-cols-1 row-cols-md-3 g-4 mt-1">
+          <div className="col">
+            <div className="card h-100">
+              <img
+                src="/sad.png"
+                className="card-img-top"
+                alt="Adventure"
+              ></img>
+              <div className="card-body">
+                <h5 className="card-title">No Adventures</h5>
+                <p className="card-text">
+                  You need to create some adventrues now!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
