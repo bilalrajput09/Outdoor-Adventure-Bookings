@@ -14,7 +14,7 @@ function CreateAdventuresForm() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   // const [errorMessage, setErrorMessage] = useState("");
-  const user = useSelector((state) => state.user.id);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { error, creationSuccess, creationLoading, creationError } =
@@ -72,7 +72,7 @@ function CreateAdventuresForm() {
         dispatch(setErrorMessage(errorMessage));
         return; // Return early to prevent form submission
       }
-      dispatch(createAdventure({ formData }));
+      dispatch(createAdventure({ formData, user }));
     } catch (error) {
       // Handle the error and display the message to the user
       setErrorMessage(error.message);

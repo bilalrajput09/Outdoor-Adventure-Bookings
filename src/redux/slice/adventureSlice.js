@@ -17,7 +17,6 @@ export const createAdventure = createAsyncThunk(
   async ({ formData, user }) => {
     try {
       const { name, selectedPicture, description } = formData;
-
       const response = await axios.post(
         "http://127.0.0.1:3000/api/v1/create_adventure",
         {
@@ -32,15 +31,28 @@ export const createAdventure = createAsyncThunk(
         return response.data;
       } else if (response.status === 409) {
         // Throw a custom error with the desired message
-        throw new Error("yes");
+        throw new Error();
       } else {
-        throw new Error("Unexpected error occurs.");
+        throw new Error();
       }
     } catch (error) {
       throw error;
     }
   }
 );
+
+export const getAllAdventures = createAsyncThunk("adventure/get", async () => {
+  try {
+    const response = await axios.get("http://127.0.0.1:3000/api/v1/adventures");
+    if (response.status === 201) {
+      return response.data;
+    } else {
+      throw new Error("Cannot get API endpoint.");
+    }
+  } catch (error) {
+    throw error;
+  }
+});
 
 const adventuresSlice = createSlice({
   name: "adventures",
