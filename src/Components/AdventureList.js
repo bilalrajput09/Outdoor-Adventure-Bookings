@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import fetchAdventuresData from '../redux/adventureActions';
+import { fetchAdventuresData } from '../redux/adventureActions';
+
 import Adventure from './Adventure';
 
 const AdventureList = () => {
