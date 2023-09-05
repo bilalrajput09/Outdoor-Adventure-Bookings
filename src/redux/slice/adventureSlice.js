@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import fetchAdventuresData from "../adventureActions";
 import axios from "axios";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const adventuresInitialState = {
   adventures: [],
@@ -12,22 +12,23 @@ const adventuresInitialState = {
   deletionLoading: false,
   deletionError: false,
 };
-const user_name = useSelector((state) => state.user.name);
-export const createAdventure = createAsyncThunk("adventure/create", async (username) => {
-  console.log('user name: ', user_name)
-  try {
-    const response = await axios.post(
-      "http://127.0.0.1:3000/api/v1/create_adventure",
-      {
-        user_name,
-        picture: 
-      }
-    );
-    return response.data; 
-  } catch (error) {
-    throw error.message; // Throwing error message on failure
+export const createAdventure = createAsyncThunk(
+  "adventure/create",
+  async (username) => {
+    try {
+      const user_name = useSelector((state) => state.user.name);
+      const response = await axios.post(
+        "http://127.0.0.1:3000/api/v1/create_adventure",
+        {
+           
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error.message; // Throwing error message on failure
+    }
   }
-});
+);
 
 const adventuresSlice = createSlice({
   name: "adventures",
@@ -35,7 +36,7 @@ const adventuresSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAdventuresData.fulfilled, (state, action) => {
-      state.adventures = [...action.payload];
+      // state.adventures = [...action.payload];
     });
   },
 });

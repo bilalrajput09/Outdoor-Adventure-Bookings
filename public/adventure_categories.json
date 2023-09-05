@@ -54,5 +54,56 @@
     "description": "Experience the thrill of flying on high-speed zip lines.",
     "image_url": "/zip-lining.png",
     "image_alt": "/zip-lining image"
+  },
+  {
+    "name": "Paragliding",
+    "description": "Soar through the skies while suspended from a parachute-like wing.",
+    "image_url": "/paragliding.png",
+    "image_alt": "paragliding image"
+  },
+  {
+    "name": "Skydiving",
+    "description": "Jump from an aircraft and freefall before deploying a parachute.",
+    "image_url": "/skydiving.png"
+  },
+  {
+    "name": "Cave Exploration",
+    "description": "Delve into underground caves and discover hidden wonders.",
+    "image_url": "/cave-exploration.png"
+  },
+  {
+    "name": "Snowboarding",
+    "description": "Carve through fresh powder on snowy mountain slopes.",
+    "image_url": "/snowboarding.png"
+  },
+  {
+    "name": "Skiing",
+    "description": "Glide down pristine ski slopes amid breathtaking scenery.",
+    "image_url": "/skiing.png"
+  },
+  {
+    "name": "Surfing",
+    "description": "Ride the waves and catch the perfect surf along coastlines.",
+    "image_url": "/surfing.png"
+  },
+  {
+    "name": "Snorkeling",
+    "description": "Explore underwater ecosystems with just a mask and snorkel.",
+    "image_url": "/snorkeling.png"
+  },
+  {
+    "name": "Scuba Diving",
+    "description": "Dive deep into the ocean to witness marine life and reefs.",
+    "image_url": "/scuba-diving.png"
+  },
+  {
+    "name": "Sailing",
+    "description": "Combine elements of surfing and sailing on a windsurfing board.",
+    "image_url": "/sailing.png"
+  },
+  {
+    "name": "Kiteboarding",
+    "description": "Harness the power of the wind while riding a kiteboard on water.",
+    "image_url": "/kiteboarding.png"
   }
 ]
