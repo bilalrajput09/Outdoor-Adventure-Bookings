@@ -14,18 +14,31 @@ const adventuresInitialState = {
 };
 export const createAdventure = createAsyncThunk(
   "adventure/create",
-  async (username) => {
+  async ({formData, user}) => {
     try {
-      const user_name = useSelector((state) => state.user.name);
+      const {name, selectedPicture, description} = formData;
+  
       const response = await axios.post(
         "http://127.0.0.1:3000/api/v1/create_adventure",
         {
-           
+          // user_id: user.id,
+          name,
+          picture: selectedPicture,
+          description,
         }
       );
-      return response.data;
+      
+      // Check if the response status is 201 (adventure created successfully.)
+      if (response.status === 201) {
+        return response.data;
+      } else if (response.status === 409) {
+        // If adventure with the same name already exists
+        throw new Error(response.data.message);
+      } else {
+        throw new Error('Unexpected error occurred');
+      }
     } catch (error) {
-      throw error.message; // Throwing error message on failure
+        throw error.message; 
     }
   }
 );

@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Dropdown } from "react-bootstrap";
+import { createAdventure } from "../redux/slice/adventureSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // CreateAdventuresForm component for adding adventures
 function CreateAdventuresForm() {
   // State variables for categories and selected category
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const user = useSelector((state) => state.user.id);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // State variable for form data (name, selected picture, description)
   const [formData, setFormData] = useState({
@@ -45,7 +52,14 @@ function CreateAdventuresForm() {
   // Form submission handler (not yet implemented)
   const handleSubmit = (e) => {
     e.preventDefault();
-    // I'm going to put submission logic here
+    try {
+      dispatch(createAdventure({ formData }));
+      navigate("/");
+      // Reset the form or navigate to a success page
+    } catch (error) {
+      // Handle the error and display the message to the user
+      setErrorMessage(error.message);
+    }
   };
 
   // Effect to load adventure categories data from a JSON file
@@ -75,12 +89,16 @@ function CreateAdventuresForm() {
               backgroundColor: "#fff",
               color: "#d35504",
               borderColor: "#d35504",
-              fontSize: "4rem",
+              fontSize: "2.7rem",
+              lineHeight: "100%",
               marginTop: "-80%",
               marginBottom: "2rem",
             }}
           >
             Add Adventures
+          </Form.Label>
+          <Form.Label>
+            <p style={{color:"red"}}>{errorMessage}</p>
           </Form.Label>
 
           {/* Adventure name input */}
