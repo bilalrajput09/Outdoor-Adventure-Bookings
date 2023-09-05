@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
-import { logout } from "../redux/slice/userSlice";
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/slice/userSlice';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const NavBar = () => {
 
   const logOutUser = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate('/login');
     localStorage.removeItem('id');
   };
   return (
@@ -21,7 +21,21 @@ const NavBar = () => {
       >
         Sign out
       </button>
+      <button>
+        <Link
+          to={'/reservations'}
+          type="button"
+          aria-controls="offcanvasScrolling"
+        >
+          Reservations
+        </Link>
+      </button>
 
+      <button>
+        <Link to={'/'} type="button" aria-controls="offcanvasScrolling">
+          Home
+        </Link>
+      </button>
       <div
         className="offcanvas offcanvas-start"
         data-bs-scroll="true"
