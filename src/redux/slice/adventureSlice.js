@@ -4,6 +4,7 @@ import axios from "axios";
 
 const adventuresInitialState = {
   adventures: [],
+  isReserved: false,
   creationSuccess: false,
   creationLoading: false,
   creationError: false,
@@ -11,7 +12,7 @@ const adventuresInitialState = {
   deletionLoading: false,
   deletionError: false,
   error: null,
-};
+ 
 export const createAdventure = createAsyncThunk(
   "adventure/create",
   async ({ formData, user }) => {
@@ -51,7 +52,7 @@ export const getAllAdventures = createAsyncThunk("adventure/get", async () => {
 });
 
 const adventuresSlice = createSlice({
-  name: "adventures",
+  name: 'adventures',
   initialState: adventuresInitialState,
   reducers: {
     setErrorMessage: (state, action) => ({

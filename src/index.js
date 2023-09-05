@@ -13,6 +13,7 @@ import LoginForm from './Components/LoginForm';
 import RegisterForm from './Components/RegisterForm';
 import AdventureShow from './Components/AdventureShow';
 import CreateAdventuresForm from './Components/CreateAdventuresForm';
+import ReservationList from './Components/ReservationList';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: 'signup', element: <RegisterForm /> },
       { path: 'login', element: <LoginForm /> },
       { path: 'addAdventure', element: <CreateAdventuresForm /> },
+      { path: 'reservations', element: <ReservationList /> },
     ],
   },
 ]);
