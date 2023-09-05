@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { resetCreationError } from "../redux/slice/adventureSlice";
 import fetchAdventuresData from "../redux/adventureActions";
 import Adventure from "./Adventure";
 
@@ -12,6 +13,10 @@ const AdventureList = () => {
   // Check if the user is authenticated
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
+  // reset adventure creation states on mount
+  useEffect(() => {
+    dispatch(resetCreationError());
+  }, []);
   // Fetch adventure data from the server on component mount
   const user = localStorage.getItem("id");
   useEffect(() => {

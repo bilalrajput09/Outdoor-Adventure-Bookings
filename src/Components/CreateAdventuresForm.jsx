@@ -46,6 +46,12 @@ function CreateAdventuresForm() {
     });
   };
 
+  // navigate to adventures index page on successful new adventure creation
+  useEffect(() => {
+    console.log("creation success: ", creationSuccess);
+    if (creationSuccess) navigate("/");
+  }, [creationSuccess]);
+
   // Effect to update form data when selectedCategory changes
   useEffect(() => {
     selectedCategory &&
@@ -67,9 +73,6 @@ function CreateAdventuresForm() {
         return; // Return early to prevent form submission
       }
       dispatch(createAdventure({ formData }));
-      !creationError && navigate("/");
-      creationError && console.log("erorrrrrrr: ", error);
-      // Reset the form or navigate to a success page
     } catch (error) {
       // Handle the error and display the message to the user
       setErrorMessage(error.message);

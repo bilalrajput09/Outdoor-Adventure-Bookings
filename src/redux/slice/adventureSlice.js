@@ -53,6 +53,7 @@ const adventuresSlice = createSlice({
     resetCreationError: (state) => ({
       ...state,
       creationError: false,
+      creationSuccess: false,
     }),
   },
   extraReducers: (builder) => {
