@@ -44,11 +44,7 @@ export const createAdventure = createAsyncThunk(
 export const getAllAdventures = createAsyncThunk("adventure/get", async () => {
   try {
     const response = await axios.get("http://127.0.0.1:3000/api/v1/adventures");
-    if (response.status === 201) {
-      return response.data;
-    } else {
-      throw new Error("Cannot get API endpoint.");
-    }
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -95,6 +91,12 @@ const adventuresSlice = createSlice({
         state.error = "Adventure by this name already exists.";
       }
     });
+    builder.addCase(getAllAdventures.pending, (state) => {});
+    builder.addCase(getAllAdventures.fulfilled, (state, action) => {
+      // state.adventures.splice(0);
+      state.adventures.push(action.payload);
+    });
+    builder.addCase(getAllAdventures.rejected, (state, action) => {});
   },
 });
 

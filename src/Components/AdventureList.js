@@ -1,21 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { resetCreationError } from "../redux/slice/adventureSlice";
 import fetchAdventuresData from "../redux/adventureActions";
+import { getAllAdventures } from "../redux/slice/adventureSlice";
 import Adventure from "./Adventure";
 
 const AdventureList = () => {
   const dispatch = useDispatch();
+  const [adventures, setAdventures] = useState([]);
   const navigate = useNavigate();
-  const adventures = useSelector((state) => state.adventures.adventures);
 
+  // get list of adventures from api
+  useEffect(() => {
+    fetch("http://127.0.0.1:3000/api/v1/adventures")
+      .then((response) => response.json())
+      .then((data) => {
+        setAdventures(data);
+      })
+      .catch((error) => {
+        console.error("Error loading adventure categories:", error);
+      });
+  }, []);
   // Check if the user is authenticated
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   // reset adventure creation states on mount
   useEffect(() => {
     dispatch(resetCreationError());
+    dispatch(getAllAdventures());
+    console.log("the adventures: ", adventures);
   }, []);
   // Fetch adventure data from the server on component mount
   const user = localStorage.getItem("id");
@@ -64,7 +78,7 @@ const AdventureList = () => {
           </span>
         </p>
       </div>
-
+      {/* {adventures.length} */}
       {adventures.length > 0 && (
         <div className="row row-cols-1 row-cols-md-3 g-4 mt-1">
           {adventures.map((adventure) => (
@@ -75,6 +89,7 @@ const AdventureList = () => {
             >
               <Adventure
                 name={adventure.name}
+                key={adventure.id}
                 picture={adventure.picture}
                 description={adventure.description}
               />
