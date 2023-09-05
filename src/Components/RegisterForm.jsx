@@ -54,7 +54,7 @@ function RegisterForm() {
             Signup
           </button>
           <p>
-            Don't have an account? <Link to={'/login'}>Login</Link>.
+            Already have an account? <Link to={'/login'}>Login</Link>.
           </p>
         </form>
       </div>
