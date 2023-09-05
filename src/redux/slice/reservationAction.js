@@ -34,7 +34,7 @@ export const fetchUserReservations = createAsyncThunk(
       currentUserID: currentUserObj().id,
     };
     const response = await fetch(
-      'http://localhost:3000/api/v1/get_reservations',
+      'http://localhost:3000/api/v1/fetch_reservations',
       {
         method: 'POST',
         body: JSON.stringify(userData),
