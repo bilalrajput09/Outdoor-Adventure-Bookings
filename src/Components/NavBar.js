@@ -1,6 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logout } from '../redux/slice/userSlice';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/slice/userSlice";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -8,34 +8,26 @@ const NavBar = () => {
 
   const logOutUser = () => {
     dispatch(logout());
-    navigate('/login');
-    localStorage.removeItem('id');
+    navigate("/login");
+    localStorage.removeItem("id");
   };
   return (
     <>
-      <button
-        className="mt-5"
-        type="button"
-        aria-controls="offcanvasScrolling"
-        onClick={logOutUser}
-      >
-        Sign out
-      </button>
-      <button>
-        <Link
-          to={'/reservations'}
-          type="button"
-          aria-controls="offcanvasScrolling"
+      <div className="position-absolute top-0 end-0 m-10 cursor-pointer">
+        <div
+          className="text-center position-relative m-4  cursor-pointer"
+          onClick={logOutUser}
         >
-          Reservations
-        </Link>
-      </button>
+          <img
+            src="/log-out.png"
+            className="text-center position-relative justify-content-end mt"
+            alt="Log Out"
+            style={{ cursor: "pointer" }}
+          />
+          <p><b>S-out</b></p>
+        </div>
+      </div>
 
-      <button>
-        <Link to={'/'} type="button" aria-controls="offcanvasScrolling">
-          Home
-        </Link>
-      </button>
       <div
         className="offcanvas offcanvas-start"
         data-bs-scroll="true"
