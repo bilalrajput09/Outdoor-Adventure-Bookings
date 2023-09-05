@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import fetchAdventuresData from "../adventureActions";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 const adventuresInitialState = {
   adventures: [],
@@ -11,13 +10,14 @@ const adventuresInitialState = {
   deletionSuccess: false,
   deletionLoading: false,
   deletionError: false,
+  error: null,
 };
 export const createAdventure = createAsyncThunk(
   "adventure/create",
-  async ({formData, user}) => {
+  async ({ formData, user }) => {
     try {
-      const {name, selectedPicture, description} = formData;
-  
+      const { name, selectedPicture, description } = formData;
+
       const response = await axios.post(
         "http://127.0.0.1:3000/api/v1/create_adventure",
         {
@@ -27,18 +27,17 @@ export const createAdventure = createAsyncThunk(
           description,
         }
       );
-      
       // Check if the response status is 201 (adventure created successfully.)
       if (response.status === 201) {
         return response.data;
       } else if (response.status === 409) {
-        // If adventure with the same name already exists
-        throw new Error(response.data.message);
+        // Throw a custom error with the desired message
+        throw new Error("yes");
       } else {
-        throw new Error('Unexpected error occurred');
+        throw new Error("Unexpected error occurs.");
       }
     } catch (error) {
-        throw error.message; 
+      throw error;
     }
   }
 );
@@ -46,12 +45,45 @@ export const createAdventure = createAsyncThunk(
 const adventuresSlice = createSlice({
   name: "adventures",
   initialState: adventuresInitialState,
-  reducers: {},
+  reducers: {
+    setErrorMessage: (state, action) => ({
+      ...state,
+      error: action.payload,
+    }),
+    resetCreationError: (state) => ({
+      ...state,
+      creationError: false,
+    }),
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchAdventuresData.fulfilled, (state, action) => {
       // state.adventures = [...action.payload];
     });
+    builder.addCase(createAdventure.pending, (state) => {
+      // Set loading flags for login
+      state.creationSuccess = false;
+      state.creationLoading = true;
+      state.creationError = false;
+    });
+    builder.addCase(createAdventure.fulfilled, (state, action) => {
+      // Update state on successful login
+      state.creationSuccess = true;
+      state.creationLoading = false;
+      state.creationError = false;
+      state.error = null;
+    });
+    builder.addCase(createAdventure.rejected, (state, action) => {
+      // Update state on login failure
+      state.creationSuccess = false;
+      state.creationLoading = true;
+      state.creationError = true;
+      if (action.error.message === "Request failed with status code 409") {
+        console.log("yee: ", action.error.message);
+        state.error = "Adventure by this name already exists.";
+      }
+    });
   },
 });
 
+export const { setErrorMessage, resetCreationError } = adventuresSlice.actions;
 export default adventuresSlice.reducer;

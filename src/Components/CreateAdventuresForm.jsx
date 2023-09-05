@@ -3,16 +3,23 @@ import { Form, Button, Dropdown } from "react-bootstrap";
 import { createAdventure } from "../redux/slice/adventureSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {
+  setErrorMessage,
+  resetCreationError,
+} from "../redux/slice/adventureSlice";
 
 // CreateAdventuresForm component for adding adventures
 function CreateAdventuresForm() {
   // State variables for categories and selected category
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
   const user = useSelector((state) => state.user.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { error, creationSuccess, creationLoading, creationError } =
+    useSelector((store) => store.adventures);
+  // Update state on successful login}
 
   // State variable for form data (name, selected picture, description)
   const [formData, setFormData] = useState({
@@ -52,9 +59,16 @@ function CreateAdventuresForm() {
   // Form submission handler (not yet implemented)
   const handleSubmit = (e) => {
     e.preventDefault();
+
     try {
+      if (!selectedCategory) {
+        const errorMessage = "You need to select an adventure category first.";
+        dispatch(setErrorMessage(errorMessage));
+        return; // Return early to prevent form submission
+      }
       dispatch(createAdventure({ formData }));
-      navigate("/");
+      !creationError && navigate("/");
+      creationError && console.log("erorrrrrrr: ", error);
       // Reset the form or navigate to a success page
     } catch (error) {
       // Handle the error and display the message to the user
@@ -73,6 +87,10 @@ function CreateAdventuresForm() {
         console.error("Error loading adventure categories:", error);
       });
   }, []);
+
+  useEffect(() => {
+    dispatch(resetCreationError());
+  }, [selectedCategory]);
 
   // JSX rendering for the component
   return (
@@ -98,7 +116,8 @@ function CreateAdventuresForm() {
             Add Adventures
           </Form.Label>
           <Form.Label>
-            <p style={{color:"red"}}>{errorMessage}</p>
+            <p style={{ color: "red" }}>{creationError && error}</p>
+            <p style={{ color: "red" }}>{!selectedCategory && error}</p>
           </Form.Label>
 
           {/* Adventure name input */}
