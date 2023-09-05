@@ -20,3 +20,12 @@ export const checkCurrentUser = () => {
   }
   return false;
 };
+
+export const currentUserObj = () => {
+  if (localStorage.getItem('id') !== null) {
+    const userObj = localStorage.getItem('id');
+
+    return JSON.parse(userObj);
+  }
+  return false;
+};

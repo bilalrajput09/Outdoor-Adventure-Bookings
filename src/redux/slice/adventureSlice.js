@@ -1,12 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import fetchAdventuresData from "../adventureActions";
+import { createSlice } from '@reduxjs/toolkit';
+import fetchAdventuresData from '../adventureActions';
 
 const adventuresInitialState = {
   adventures: [],
+  isReserved: false,
 };
 
 const adventuresSlice = createSlice({
-  name: "adventures",
+  name: 'adventures',
   initialState: adventuresInitialState,
   reducers: {},
   extraReducers: (builder) => {

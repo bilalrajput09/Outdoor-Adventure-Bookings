@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import fetchAdventuresData from '../redux/adventureActions';
 import Adventure from './Adventure';
 
@@ -29,12 +29,17 @@ const AdventureList = () => {
       {adventures.length > 0 && (
         <div className="row row-cols-1 row-cols-md-3 g-4 mt-5">
           {adventures.map((adventure) => (
-            <Adventure
+            <Link
+              to={'/adventures/' + adventure.id}
               key={adventure.id}
-              name={adventure.name}
-              picture={adventure.picture}
-              description={adventure.description}
-            />
+              className="btn"
+            >
+              <Adventure
+                name={adventure.name}
+                picture={adventure.picture}
+                description={adventure.description}
+              />
+            </Link>
           ))}
         </div>
       )}
