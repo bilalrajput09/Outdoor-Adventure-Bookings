@@ -1,31 +1,74 @@
-// NavBar.js
-import React, { useState } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import './NavBar.css';
+import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/slice/userSlice';
+import navImg from '../assets/images/icons8-menu-50.png';
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const logOutUser = () => {
+    dispatch(logout());
+    navigate('/login');
+    localStorage.removeItem('id');
   };
-
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="navbar-expand-lg">
-      <Navbar.Brand href="#home"></Navbar.Brand>
-      <Navbar.Toggle onClick={toggleMenu} aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav" className={isOpen ? 'show' : ''}>
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#about">About</Nav.Link>
-          <Nav.Link href="#services">Services</Nav.Link>
-          <Nav.Link href="#contact">Contact</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <>
+      <div className="position-absolute top-0 end-0 m-10 cursor-pointer">
+        <div
+          className="text-center position-relative m-4  cursor-pointer"
+          onClick={logOutUser}
+        >
+          <img
+            src="/log-out.png"
+            className="text-center position-relative justify-content-end mt"
+            alt="Log Out"
+            style={{ cursor: 'pointer' }}
+          />
+          <p>
+            <b>S-out</b>
+          </p>
+        </div>
+      </div>
+      <img
+        src={navImg}
+        class="mt-4 ml-3"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasWithBothOptions"
+        aria-controls="offcanvasWithBothOptions"
+      ></img>
+
+      <div
+        class="offcanvas offcanvas-start"
+        data-bs-scroll="true"
+        tabindex="-1"
+        id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+            Backdrop with scrolling
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <Link to={'/reservations'}>Reservations</Link>
+          <p>
+            Try scrolling the rest of the page to see this option in action.
+          </p>
+        </div>
+      </div>
+    </>
   );
 };
 
 export default NavBar;
+
 
 
