@@ -14,11 +14,22 @@ const AdventureShow = () => {
   const { id, picture } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // Add code to fetch adventure details using the adventure ID
-  const [adventure, setAdventure] = useState(null);
   const currentAdventure = useSelector(
     (store) => store.adventures.currentAdventure
   );
+
+  // Add code to fetch adventure details using the adventure ID
+  const [formattedDate, setFormattedDate] = useState(new Date());
+  const [adventureName, setAdventureName] = useState("");
+  const [adventurePicture, setAdventurePicture] = useState("");
+  const [adventureDescription, setAdventureDescription] = useState("");
+  const options = useState({
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
 
   useEffect(() => {
     dispatch(getAnAdventure(id));
@@ -26,7 +37,12 @@ const AdventureShow = () => {
 
   // Use another useEffect to observe changes in currentAdventure
   useEffect(() => {
-    console.log("current adventure: ", currentAdventure);
+    if (currentAdventure) {
+      console.log("wooooo: ", currentAdventure.name);
+      setAdventureName(currentAdventure.name);
+      setAdventurePicture(currentAdventure.picture);
+      setAdventureDescription(currentAdventure.description);
+    }
   }, [currentAdventure]);
 
   const reserveHandler = () => {
@@ -48,27 +64,31 @@ const AdventureShow = () => {
   }, [dispatch]);
 
   const isReserved = checkReservation(reservations, id);
+
   return (
     <>
-      <h1 className="text-center mb-5">Latest Adventures</h1>
-      <div className="card mb-3" style={{ maxWidth: "80%" }}>
+      <h1 className="text-center mb-5">{adventureName}</h1>
+      <div className="card mb-3">
         <div className="row g-0">
           <div className="col-md-8">
             <img
-              src={`/display-${currentAdventure.picture}`}
+              src={`/display-${adventurePicture}`}
               className="img-fluid rounded-start"
-              alt="Adventure-imgaaa"
+              alt={`${adventureName} image`}
             ></img>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 d-flex flex-column">
             <div className="card-body">
-              <h5 className="card-title">{currentAdventure.name}</h5>
-              <p className="card-text">{currentAdventure.description}</p>
+              <h5 className="card-title">{adventureName}</h5>
+              <p className="card-text">{adventureDescription}</p>
               <p className="card-text">
-                <small className="text-body-secondary">
-                  Created at {currentAdventure.createdAt}
+                <small className="text-body-secondary mt-auto">
+                  Created at{" "}
+                  {formattedDate.toLocaleDateString("en-US", options)}
                 </small>
               </p>
+            </div>
+            <div className="mt-auto">
               {isReserved ? (
                 <button
                   className="btn btn-warning"

@@ -115,6 +115,10 @@ const adventuresSlice = createSlice({
 
     builder.addCase(getAnAdventure.fulfilled, (state, action) => {
       // Update state on successful fetch of an individual adventure
+      state.currentAdventure = {
+        ...action.payload,
+        created_at: new Date(action.payload.created_at), // Convert to Date object
+      };
       state.currentAdventure = action.payload;
       // state.creationLoading = false;
       // state.creationError = false;
