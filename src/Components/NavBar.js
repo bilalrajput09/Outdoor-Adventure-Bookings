@@ -1,6 +1,7 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
+import navImg from '../assets/images/icons8-menu-50.png';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -29,29 +30,35 @@ const NavBar = () => {
           </p>
         </div>
       </div>
-
-      <Link to={'/reservations'}>Reservations</Link>
+      <img
+        src={navImg}
+        class="mt-4 ml-3"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasWithBothOptions"
+        aria-controls="offcanvasWithBothOptions"
+      ></img>
 
       <div
-        className="offcanvas offcanvas-start"
+        class="offcanvas offcanvas-start"
         data-bs-scroll="true"
-        data-bs-backdrop="false"
-        tabIndex="-1"
-        id="offcanvasScrolling"
-        aria-labelledby="offcanvasScrollingLabel"
+        tabindex="-1"
+        id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel"
       >
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasScrollingLabel">
-            Offcanvas with body scrolling
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+            Backdrop with scrolling
           </h5>
           <button
             type="button"
-            className="btn-close"
+            class="btn-close"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
           ></button>
         </div>
-        <div className="offcanvas-body">
+        <div class="offcanvas-body">
+          <Link to={'/reservations'}>Reservations</Link>
           <p>
             Try scrolling the rest of the page to see this option in action.
           </p>
