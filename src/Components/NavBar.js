@@ -1,14 +1,14 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logout } from '../redux/slice/userSlice';
-import navImg from '../assets/images/icons8-menu-50.png';
+// import { logout } from '../redux/slice/userSlice';
+import navImg from '../assets/images/menu.png';
 
 const NavBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const logOutUser = () => {
-    dispatch(logout());
+    // dispatch(logout());
     navigate('/login');
     localStorage.removeItem('id');
   };
