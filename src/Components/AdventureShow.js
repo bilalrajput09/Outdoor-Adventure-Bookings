@@ -60,10 +60,10 @@ const AdventureShow = () => {
               </p>
               {isReserved ? (
                 <button
-                  className="btn btn-secondary"
+                  className="btn btn-warning"
                   onClick={deleteReserveHandler}
                 >
-                  Reserved
+                  Cancel Reservation
                 </button>
               ) : (
                 <button className="btn btn-success" onClick={reserveHandler}>

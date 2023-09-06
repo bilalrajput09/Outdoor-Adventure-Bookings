@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/slice/userSlice";
+import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/slice/userSlice';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -8,8 +8,8 @@ const NavBar = () => {
 
   const logOutUser = () => {
     dispatch(logout());
-    navigate("/login");
-    localStorage.removeItem("id");
+    navigate('/login');
+    localStorage.removeItem('id');
   };
   return (
     <>
@@ -22,11 +22,15 @@ const NavBar = () => {
             src="/log-out.png"
             className="text-center position-relative justify-content-end mt"
             alt="Log Out"
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
           />
-          <p><b>S-out</b></p>
+          <p>
+            <b>S-out</b>
+          </p>
         </div>
       </div>
+
+      <Link to={'/reservations'}>Reservations</Link>
 
       <div
         className="offcanvas offcanvas-start"
