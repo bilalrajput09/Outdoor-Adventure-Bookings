@@ -4,6 +4,7 @@ import axios from "axios";
 
 const adventuresInitialState = {
   adventures: [],
+  currentAdventure: null,
   isReserved: false,
   creationSuccess: false,
   creationLoading: false,
@@ -43,9 +44,21 @@ export const createAdventure = createAsyncThunk(
   }
 );
 
-export const getAllAdventures = createAsyncThunk("adventure/get", async () => {
+export const getAllAdventures = createAsyncThunk("adventures/get", async () => {
   try {
     const response = await axios.get("http://127.0.0.1:3000/api/v1/adventures");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+});
+
+export const getAnAdventure = createAsyncThunk("adventure/get", async (id) => {
+  try {
+    const response = await axios.get(
+      `http://127.0.0.1:3000/api/v1/adventures/${id}`
+    );
+    console.log("rep.dddd: ", response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -99,6 +112,14 @@ const adventuresSlice = createSlice({
       state.adventures.push(action.payload);
     });
     builder.addCase(getAllAdventures.rejected, (state, action) => {});
+
+    builder.addCase(getAnAdventure.fulfilled, (state, action) => {
+      // Update state on successful fetch of an individual adventure
+      state.currentAdventure = action.payload;
+      // state.creationLoading = false;
+      // state.creationError = false;
+      // state.error = null;
+    });
   },
 });
 

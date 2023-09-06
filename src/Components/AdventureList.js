@@ -30,7 +30,6 @@ const AdventureList = () => {
   useEffect(() => {
     dispatch(resetCreationError());
     dispatch(getAllAdventures());
-    console.log("the adventures: ", adventures);
   }, []);
   // Fetch adventure data from the server on component mount
   const user = localStorage.getItem("id");
@@ -93,6 +92,7 @@ const AdventureList = () => {
                 key={adventure.id}
                 picture={adventure.picture}
                 description={adventure.description}
+                adventureId={adventure.id}
               />
             </Link>
           ))}
