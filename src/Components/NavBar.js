@@ -2,6 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import { logout } from '../redux/slice/userSlice';
 import navImg from '../assets/images/menu.png';
+import './NavBar.css'
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const NavBar = () => {
       >
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-            Backdrop with scrolling
+            Adventure menu
           </h5>
           <button
             type="button"
@@ -58,10 +59,13 @@ const NavBar = () => {
           ></button>
         </div>
         <div class="offcanvas-body">
-          <Link to={'/reservations'}>Reservations</Link>
-          <p>
-            Try scrolling the rest of the page to see this option in action.
-          </p>
+          <Link to={'/reservations'} className="nav-link">Reservations</Link>
+          <br></br>
+          <Link to={'/addAdventure'} className="nav-link">Add Adventure</Link>
+          <br></br>
+          <Link to={'/signup'} className="nav-link">Signup</Link>
+          <br></br>
+          <Link to={'/login'} className="nav-link">Login</Link>
         </div>
       </div>
     </>
