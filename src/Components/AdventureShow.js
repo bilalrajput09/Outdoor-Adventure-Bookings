@@ -9,9 +9,7 @@ import {
   fetchUserReservations,
   deleteReservation,
 } from '../redux/slice/reservationAction';
-import store from '../redux/store';
 import { checkCurrentUser } from '../App';
-import { FaChevronLeft } from 'react-icons/fa';
 
 const AdventureShow = () => {
   const { id } = useParams();
@@ -38,6 +36,10 @@ const AdventureShow = () => {
     hour: 'numeric',
     minute: 'numeric',
   });
+
+  if (!checkCurrentUser()) {
+    navigate('/login');
+  }
 
   useEffect(() => {
     dispatch(getAnAdventure(id));

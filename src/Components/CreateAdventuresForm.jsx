@@ -8,6 +8,8 @@ import {
   resetCreationError,
 } from '../redux/slice/adventureSlice';
 
+import { checkCurrentUser } from '../App';
+
 // CreateAdventuresForm component for adding adventures
 function CreateAdventuresForm() {
   // State variables for categories and selected category
@@ -96,6 +98,10 @@ function CreateAdventuresForm() {
   }, [selectedCategory]);
 
   // JSX rendering for the component
+
+  if (!checkCurrentUser()) {
+    navigate('/login');
+  }
   return (
     <>
       <div className="container-fluid vh-100 d-flex justify-content-center mb-5">
