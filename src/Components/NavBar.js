@@ -1,6 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logout } from '../redux/slice/userSlice';
+import { Link } from 'react-router-dom';
 import navImg from '../assets/images/menu.png';
 import './NavBar.css';
 import logo from '../assets/images/mountain-adventure-club-logo-design-template-f30d0b2135369f3d04623f458d7a8714_screen.jpg';
@@ -8,6 +6,7 @@ import { BsFacebook } from 'react-icons/bs';
 import { BsInstagram } from 'react-icons/bs';
 import { BsGoogle } from 'react-icons/bs';
 import { BsPinterest } from 'react-icons/bs';
+import { checkCurrentUser } from '../App';
 
 const NavBar = () => {
   return (
@@ -52,21 +51,31 @@ const NavBar = () => {
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         >
-          <Link to={'/reservations'} className="nav-link">
-            Reservations
-          </Link>
+          {checkCurrentUser() && (
+            <>
+              <Link to={'/reservations'} className="nav-link">
+                Reservations
+              </Link>
+              <br></br>
+              <Link to={'/addAdventure'} className="nav-link">
+                Add Adventure
+              </Link>
+            </>
+          )}
+
           <br></br>
-          <Link to={'/addAdventure'} className="nav-link">
-            Add Adventure
-          </Link>
+          {!checkCurrentUser() && (
+            <Link to={'/signup'} className="nav-link">
+              Signup
+            </Link>
+          )}
+
           <br></br>
-          <Link to={'/signup'} className="nav-link">
-            Signup
-          </Link>
-          <br></br>
-          <Link to={'/login'} className="nav-link">
-            Login
-          </Link>
+          {!checkCurrentUser() && (
+            <Link to={'/login'} className="nav-link">
+              Login
+            </Link>
+          )}
         </div>
 
         <div className="sticky-footer mb-2 ms-3 d-flex flex-column">

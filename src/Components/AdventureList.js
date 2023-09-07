@@ -5,18 +5,11 @@ import { resetCreationError } from '../redux/slice/adventureSlice';
 import fetchAdventuresData from '../redux/adventureActions';
 import { getAllAdventures } from '../redux/slice/adventureSlice';
 import Adventure from './Adventure';
-import { logout } from '../redux/slice/userSlice';
 
 const AdventureList = () => {
   const dispatch = useDispatch();
   const [adventures, setAdventures] = useState([]);
   const navigate = useNavigate();
-
-  const logOutUser = () => {
-    dispatch(logout());
-    navigate('/login');
-    localStorage.removeItem('id');
-  };
 
   // get list of adventures from api
   useEffect(() => {
@@ -57,17 +50,6 @@ const AdventureList = () => {
 
   return (
     <>
-      <div className="position-absolute top-0 end-0 mt-5 me-3 cursor-pointer">
-        <div
-          className="text-center position-relative mt-3   cursor-pointer"
-          onClick={logOutUser}
-        >
-          <img src="/log-out.png" alt="Log Out" style={{ cursor: 'pointer' }} />
-          <p>
-            <b>S-out</b>
-          </p>
-        </div>
-      </div>
       <div className="text-center mt-4">
         <h1 className="text-center mt-2">Latest Adventures</h1>
         <br />
