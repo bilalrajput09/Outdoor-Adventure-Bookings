@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom';
 import navImg from '../assets/images/menu.png';
 import './NavBar.css';
 import logo from '../assets/images/mountain-adventure-club-logo-design-template-f30d0b2135369f3d04623f458d7a8714_screen.jpg';
-import { BsFacebook } from 'react-icons/bs';
+import { BsFacebook, BsWhatsapp } from 'react-icons/bs';
 import { BsInstagram } from 'react-icons/bs';
 import { BsGoogle } from 'react-icons/bs';
 import { BsPinterest } from 'react-icons/bs';
+import { BsGithub } from 'react-icons/bs';
+import { IoLogoWhatsapp } from 'react-icons/bs';
 import { checkCurrentUser } from '../App';
 
 const NavBar = () => {
@@ -91,6 +93,12 @@ const NavBar = () => {
             </Link>
             <Link to={'/login'} className="nav-link">
               <BsPinterest />
+            </Link>
+            <Link to={'/login'} className="nav-link">
+              <BsGithub />
+            </Link>
+            <Link to={'/login'} className="nav-link">
+              <BsWhatsapp />
             </Link>
           </div>
           <div className="ms-2">

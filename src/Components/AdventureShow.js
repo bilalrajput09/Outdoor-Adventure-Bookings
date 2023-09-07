@@ -1,39 +1,41 @@
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAnAdventure } from "../redux/slice/adventureSlice";
-import addNewReservation from "../redux/slice/reservationAction";
-import { deleteAdventure } from "../redux/slice/adventureSlice";
+import { useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAnAdventure } from '../redux/slice/adventureSlice';
+import addNewReservation from '../redux/slice/reservationAction';
+import { deleteAdventure } from '../redux/slice/adventureSlice';
 import {
   fetchUserReservations,
   deleteReservation,
-} from "../redux/slice/reservationAction";
-import store from "../redux/store";
+} from '../redux/slice/reservationAction';
+import store from '../redux/store';
+import { checkCurrentUser } from '../App';
+import { FaChevronLeft } from 'react-icons/fa';
 
 const AdventureShow = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentAdventure = useSelector(
-    (store) => store.adventures.currentAdventure
+    (store) => store.adventures.currentAdventure,
   );
 
   const { deletionSuccess, deletionLoading, deletionError } = useSelector(
-    (state) => state.adventures
+    (state) => state.adventures,
   );
 
   // Add code to fetch adventure details using the adventure ID
   const [formattedDate, setFormattedDate] = useState(new Date());
-  const [adventureName, setAdventureName] = useState("");
-  const [adventurePicture, setAdventurePicture] = useState("");
-  const [adventureDescription, setAdventureDescription] = useState("");
+  const [adventureName, setAdventureName] = useState('');
+  const [adventurePicture, setAdventurePicture] = useState('');
+  const [adventureDescription, setAdventureDescription] = useState('');
   const options = useState({
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
   });
 
   useEffect(() => {
@@ -61,7 +63,7 @@ const AdventureShow = () => {
 
     const reservation_id = reservations[reservation_index].id;
     dispatch(deleteReservation(reservation_id));
-    navigate("/");
+    navigate('/');
   };
 
   // deleting adventure
@@ -71,8 +73,8 @@ const AdventureShow = () => {
 
   // redirect to adventure list on successfull deletion
   useEffect(() => {
-    deletionSuccess && navigate("/")
-  },[deletionSuccess])
+    deletionSuccess && navigate('/');
+  }, [deletionSuccess]);
 
   const handleDelete = () => {
     dispatch(deleteAdventure(id));
@@ -98,39 +100,37 @@ const AdventureShow = () => {
               <p className="card-text">{adventureDescription}</p>
               <p className="card-text">
                 <small className="text-body-secondary mt-auto">
-                  Created at{" "}
-                  {formattedDate.toLocaleDateString("en-US", options)}
+                  Created at{' '}
+                  {formattedDate.toLocaleDateString('en-US', options)}
                 </small>
               </p>
             </div>
-            <div className="row">
-              <div className="col">
-                <div className="mt-auto m-2">
-                  {isReserved ? (
-                    <button
-                      className="btn btn-warning"
-                      onClick={deleteReserveHandler}
-                    >
-                      Cancel Reservation
+            {checkCurrentUser() && (
+              <div className="row">
+                <div className="col">
+                  <div className="mt-auto m-2 d-flex justify-content-between ">
+                    {isReserved ? (
+                      <button
+                        className="btn btn-warning"
+                        onClick={deleteReserveHandler}
+                      >
+                        Cancel Reservation
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-success"
+                        onClick={reserveHandler}
+                      >
+                        Reserve
+                      </button>
+                    )}
+                    <button className="btn btn-danger" onClick={handleDelete}>
+                      Delete Adventure
                     </button>
-                  ) : (
-                    <button
-                      className="btn btn-success"
-                      onClick={reserveHandler}
-                    >
-                      Reserve
-                    </button>
-                  )}
+                  </div>
                 </div>
               </div>
-              <div className="col">
-                <div className="mt-auto m-2">
-                  <button className="btn btn-danger" onClick={handleDelete}>
-                    Delete Adventure
-                  </button>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

@@ -7,8 +7,8 @@ const SignOutBtn = () => {
 
   const logOutUser = () => {
     dispatch(logout());
-    navigate('/login');
     localStorage.removeItem('id');
+    navigate('/login');
   };
   return (
     <div className="cursor-pointer">
