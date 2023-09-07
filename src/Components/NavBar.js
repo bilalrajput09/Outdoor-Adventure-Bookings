@@ -14,7 +14,7 @@ const NavBar = () => {
     <div className=" bg-body-tertiary">
       <img
         src={navImg}
-        class="pt-3 pb-3 ms-4"
+        class="pt-4 pb-3 ms-4"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions"
@@ -29,7 +29,14 @@ const NavBar = () => {
       >
         <div className="d-flex justify-content-start">
           <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-            <img src={logo} className="w-50 mt-3 ms-3"></img>
+            <Link to={'/'}>
+              <img
+                src={logo}
+                className="w-50 mt-3 ms-3 "
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></img>
+            </Link>
           </h5>
           <div class="offcanvas-header">
             <button

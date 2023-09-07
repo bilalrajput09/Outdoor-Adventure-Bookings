@@ -22,7 +22,7 @@ const ReservationList = () => {
   );
   return (
     <>
-      <h1 className="text-center mb-5">Reservations</h1>
+      <h1 className="text-center mb-5 mt-5">My Reservations</h1>
       {reservations.length > 0 && (
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {reservedAdventures.map((adventure) => (
