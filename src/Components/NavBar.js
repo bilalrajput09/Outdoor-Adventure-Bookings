@@ -1,44 +1,25 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
-import navImg from '../assets/images/icons8-menu-50.png';
+import navImg from '../assets/images/menu.png';
+import './NavBar.css';
+import logo from '../assets/images/mountain-adventure-club-logo-design-template-f30d0b2135369f3d04623f458d7a8714_screen.jpg';
+import { BsFacebook } from 'react-icons/bs';
+import { BsInstagram } from 'react-icons/bs';
+import { BsGoogle } from 'react-icons/bs';
+import { BsPinterest } from 'react-icons/bs';
 
 const NavBar = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const logOutUser = () => {
-    dispatch(logout());
-    navigate('/login');
-    localStorage.removeItem('id');
-  };
   return (
-    <>
-      <div className="position-absolute top-0 end-0 m-10 cursor-pointer">
-        <div
-          className="text-center position-relative m-4  cursor-pointer"
-          onClick={logOutUser}
-        >
-          <img
-            src="/log-out.png"
-            className="text-center position-relative justify-content-end mt"
-            alt="Log Out"
-            style={{ cursor: 'pointer' }}
-          />
-          <p>
-            <b>S-out</b>
-          </p>
-        </div>
-      </div>
+    <div className=" bg-body-tertiary">
       <img
         src={navImg}
-        class="mt-4 ml-3"
+        class="pt-3 pb-3 ms-4"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions"
         aria-controls="offcanvasWithBothOptions"
       ></img>
-
       <div
         class="offcanvas offcanvas-start"
         data-bs-scroll="true"
@@ -46,25 +27,71 @@ const NavBar = () => {
         id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel"
       >
-        <div class="offcanvas-header">
+        <div className="d-flex justify-content-start">
           <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-            Backdrop with scrolling
+            <img src={logo} className="w-50 mt-3 ms-3"></img>
           </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
+          <div class="offcanvas-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
         </div>
-        <div class="offcanvas-body">
-          <Link to={'/reservations'}>Reservations</Link>
-          <p>
-            Try scrolling the rest of the page to see this option in action.
-          </p>
+        <div
+          class="offcanvas-body"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        >
+          <Link to={'/reservations'} className="nav-link">
+            Reservations
+          </Link>
+          <br></br>
+          <Link to={'/addAdventure'} className="nav-link">
+            Add Adventure
+          </Link>
+          <br></br>
+          <Link to={'/signup'} className="nav-link">
+            Signup
+          </Link>
+          <br></br>
+          <Link to={'/login'} className="nav-link">
+            Login
+          </Link>
+        </div>
+
+        <div className="sticky-footer mb-2 ms-3 d-flex flex-column">
+          <div className="d-flex mb-3">
+            <Link to={'/login'} className="nav-link">
+              <BsFacebook />
+            </Link>
+            <Link to={'/login'} className="nav-link">
+              <BsInstagram />
+            </Link>
+            <Link to={'/login'} className="nav-link">
+              <BsGoogle />
+            </Link>
+            <Link to={'/login'} className="nav-link">
+              <BsPinterest />
+            </Link>
+          </div>
+          <div className="ms-2">
+            <p>
+              &copy; Made with ❤ by
+              <Link
+                to="https://github.com/bilalrajput09"
+                className="link-success"
+              >
+                {' Bilal Ahmed '}
+              </Link>
+              and TEAM
+            </p>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

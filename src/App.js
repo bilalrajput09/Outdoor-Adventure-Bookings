@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
+import Search from './Components/Search';
 import AdventureList from './Components/AdventureList';
 
 function App() {
   return (
     <>
+      <Search />
       <div className="container">
         <AdventureList />
       </div>
