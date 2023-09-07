@@ -78,7 +78,7 @@ const userSlice = createSlice({
       state.isLoginLoading = false;
       state.isLoginSuccess = true;
       state.isLoginError = false;
-      state.user = action.payload.user;
+      state.user = action.payload;
       state.message = action.payload.message;
       state.error = null;
     });

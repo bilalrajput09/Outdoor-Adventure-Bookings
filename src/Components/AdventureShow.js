@@ -24,6 +24,7 @@ const AdventureShow = () => {
   const { deletionSuccess, deletionLoading, deletionError } = useSelector(
     (state) => state.adventures,
   );
+  const user = useSelector((state) => state.user.user);
 
   // Add code to fetch adventure details using the adventure ID
   const [formattedDate, setFormattedDate] = useState(new Date());
@@ -105,7 +106,7 @@ const AdventureShow = () => {
                 </small>
               </p>
             </div>
-            {checkCurrentUser() && (
+            {user !== null && (
               <div className="row">
                 <div className="col">
                   <div className="mt-auto m-2 d-flex justify-content-between ">

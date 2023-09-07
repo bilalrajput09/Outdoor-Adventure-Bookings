@@ -23,6 +23,7 @@ const adventuresSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAdventuresData.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.adventures = [...action.payload];
     });
   },

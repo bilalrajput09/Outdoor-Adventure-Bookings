@@ -7,29 +7,29 @@ import { BsInstagram } from 'react-icons/bs';
 import { BsGoogle } from 'react-icons/bs';
 import { BsPinterest } from 'react-icons/bs';
 import { BsGithub } from 'react-icons/bs';
-import { IoLogoWhatsapp } from 'react-icons/bs';
-import { checkCurrentUser } from '../App';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+  const user = useSelector((state) => state.user.user);
   return (
     <div className=" bg-body-tertiary">
       <img
         src={navImg}
-        class="pt-4 pb-3 ms-4"
+        className="pt-4 pb-3 ms-4"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions"
         aria-controls="offcanvasWithBothOptions"
       ></img>
       <div
-        class="offcanvas offcanvas-start"
+        className="offcanvas offcanvas-start"
         data-bs-scroll="true"
-        tabindex="-1"
+        tabIndex="-1"
         id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel"
       >
         <div className="d-flex justify-content-start">
-          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+          <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">
             <Link to={'/'}>
               <img
                 src={logo}
@@ -39,21 +39,25 @@ const NavBar = () => {
               ></img>
             </Link>
           </h5>
-          <div class="offcanvas-header">
+          <div className="offcanvas-header">
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
             ></button>
           </div>
         </div>
         <div
-          class="offcanvas-body"
+          className="offcanvas-body"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         >
-          {checkCurrentUser() && (
+          <Link to={'/'} className="nav-link">
+            Adventures
+          </Link>
+          <br></br>
+          {user !== null && (
             <>
               <Link to={'/reservations'} className="nav-link">
                 Reservations
@@ -65,15 +69,14 @@ const NavBar = () => {
             </>
           )}
 
-          <br></br>
-          {!checkCurrentUser() && (
+          {user === null && (
             <Link to={'/signup'} className="nav-link">
               Signup
             </Link>
           )}
 
           <br></br>
-          {!checkCurrentUser() && (
+          {user === null && (
             <Link to={'/login'} className="nav-link">
               Login
             </Link>

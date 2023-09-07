@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import fetchAdventuresData from "../adventureActions";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import fetchAdventuresData from '../adventureActions';
+import axios from 'axios';
 
 const adventuresInitialState = {
   adventures: [],
@@ -16,18 +16,18 @@ const adventuresInitialState = {
 };
 
 export const createAdventure = createAsyncThunk(
-  "adventure/create",
+  'adventure/create',
   async ({ formData, user }) => {
     try {
       const { name, selectedPicture, description } = formData;
       const response = await axios.post(
-        "http://127.0.0.1:3000/api/v1/create_adventure",
+        'http://127.0.0.1:3000/api/v1/create_adventure',
         {
           // user_id: user.id,
           name,
           picture: selectedPicture,
           description,
-        }
+        },
       );
       // Check if the response status is 201 (adventure created successfully.)
       if (response.status === 201) {
@@ -41,12 +41,12 @@ export const createAdventure = createAsyncThunk(
     } catch (error) {
       throw error;
     }
-  }
+  },
 );
 
-export const getAllAdventures = createAsyncThunk("adventures/get", async () => {
+export const getAllAdventures = createAsyncThunk('adventures/get', async () => {
   try {
-    const response = await axios.get("http://127.0.0.1:3000/api/v1/adventures");
+    const response = await axios.get('http://127.0.0.1:3000/api/v1/adventures');
     return response.data;
   } catch (error) {
     throw error;
@@ -54,25 +54,24 @@ export const getAllAdventures = createAsyncThunk("adventures/get", async () => {
 });
 
 export const deleteAdventure = createAsyncThunk(
-  "adventures/delete",
+  'adventures/delete',
   async (id) => {
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:3000/api/v1/adventures/${id}`
+        `http://127.0.0.1:3000/api/v1/adventures/${id}`,
       );
       return response.data;
     } catch (error) {
       throw error;
     }
-  }
+  },
 );
 
-export const getAnAdventure = createAsyncThunk("adventure/get", async (id) => {
+export const getAnAdventure = createAsyncThunk('adventure/get', async (id) => {
   try {
     const response = await axios.get(
-      `http://127.0.0.1:3000/api/v1/adventures/${id}`
+      `http://127.0.0.1:3000/api/v1/adventures/${id}`,
     );
-    console.log("rep.dddd: ", response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -80,7 +79,7 @@ export const getAnAdventure = createAsyncThunk("adventure/get", async (id) => {
 });
 
 const adventuresSlice = createSlice({
-  name: "adventures",
+  name: 'adventures',
   initialState: adventuresInitialState,
   reducers: {
     setErrorMessage: (state, action) => ({
@@ -116,8 +115,8 @@ const adventuresSlice = createSlice({
       state.deletionSuccess = false;
       state.deletionLoading = false;
       state.deletionError = true;
-      if (action.error.message === "Adventure not found") {
-        state.error = "Adventure not found.";
+      if (action.error.message === 'Adventure not found') {
+        state.error = 'Adventure not found.';
       }
     });
     builder.addCase(deleteAdventure.pending, (state) => {
@@ -138,8 +137,8 @@ const adventuresSlice = createSlice({
       state.creationSuccess = false;
       state.creationLoading = true;
       state.deletionError = true;
-      if (action.error.message === "Request failed with status code 409") {
-        state.error = "Adventure by this name already exists.";
+      if (action.error.message === 'Request failed with status code 409') {
+        state.error = 'Adventure by this name already exists.';
       }
     });
     builder.addCase(getAllAdventures.pending, (state) => {});
