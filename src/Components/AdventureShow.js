@@ -63,6 +63,10 @@ const AdventureShow = () => {
     dispatch(fetchUserReservations());
   }, [dispatch]);
 
+  const handleDelete = () => {
+    
+  }
+
   const isReserved = checkReservation(reservations, id);
 
   return (
@@ -110,7 +114,7 @@ const AdventureShow = () => {
               </div>
               <div className="col">
                 <div className="mt-auto m-2">
-                  <button className="btn btn-danger" onClick={reserveHandler}>
+                  <button className="btn btn-danger" onClick={handleDelete}>
                     Delete Adventure
                   </button>
                 </div>
