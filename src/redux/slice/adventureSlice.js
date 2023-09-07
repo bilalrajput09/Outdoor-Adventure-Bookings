@@ -91,6 +91,7 @@ const adventuresSlice = createSlice({
       ...state,
       creationError: false,
       creationSuccess: false,
+      deletionSuccess: false,
     }),
   },
   extraReducers: (builder) => {

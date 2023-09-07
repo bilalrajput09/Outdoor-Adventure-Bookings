@@ -1,21 +1,26 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import adventureImage from "../assets/images/istockphoto-516449022-612x612.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { getAnAdventure } from "../redux/slice/adventureSlice";
 import addNewReservation from "../redux/slice/reservationAction";
+import { deleteAdventure } from "../redux/slice/adventureSlice";
 import {
   fetchUserReservations,
   deleteReservation,
 } from "../redux/slice/reservationAction";
+import store from "../redux/store";
 
 const AdventureShow = () => {
-  const { id, picture } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentAdventure = useSelector(
     (store) => store.adventures.currentAdventure
+  );
+
+  const { deletionSuccess, deletionLoading, deletionError } = useSelector(
+    (state) => state.adventures
   );
 
   // Add code to fetch adventure details using the adventure ID
@@ -38,7 +43,6 @@ const AdventureShow = () => {
   // Use another useEffect to observe changes in currentAdventure
   useEffect(() => {
     if (currentAdventure) {
-      console.log("wooooo: ", currentAdventure.name);
       setAdventureName(currentAdventure.name);
       setAdventurePicture(currentAdventure.picture);
       setAdventureDescription(currentAdventure.description);
@@ -59,13 +63,20 @@ const AdventureShow = () => {
     dispatch(deleteReservation(reservation_id));
     navigate("/");
   };
+
+  // deleting adventure
   useEffect(() => {
     dispatch(fetchUserReservations());
   }, [dispatch]);
 
+  // redirect to adventure list on successfull deletion
+  useEffect(() => {
+    deletionSuccess && navigate("/")
+  },[deletionSuccess])
+
   const handleDelete = () => {
-    
-  }
+    dispatch(deleteAdventure(id));
+  };
 
   const isReserved = checkReservation(reservations, id);
 
