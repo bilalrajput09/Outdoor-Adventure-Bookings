@@ -53,6 +53,20 @@ export const getAllAdventures = createAsyncThunk("adventures/get", async () => {
   }
 });
 
+export const deleteAdventure = createAsyncThunk(
+  "adventures/delete",
+  async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://127.0.0.1:3000/api/v1/adventures/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 export const getAnAdventure = createAsyncThunk("adventure/get", async (id) => {
   try {
     const response = await axios.get(
@@ -77,6 +91,7 @@ const adventuresSlice = createSlice({
       ...state,
       creationError: false,
       creationSuccess: false,
+      deletionSuccess: false,
     }),
   },
   extraReducers: (builder) => {
@@ -98,11 +113,32 @@ const adventuresSlice = createSlice({
     });
     builder.addCase(createAdventure.rejected, (state, action) => {
       // Update state on login failure
+      state.deletionSuccess = false;
+      state.deletionLoading = false;
+      state.deletionError = true;
+      if (action.error.message === "Adventure not found") {
+        state.error = "Adventure not found.";
+      }
+    });
+    builder.addCase(deleteAdventure.pending, (state) => {
+      // Set loading flags for login
+      state.deletionSuccess = false;
+      state.deletionLoading = true;
+      state.deletionError = false;
+    });
+    builder.addCase(deleteAdventure.fulfilled, (state, action) => {
+      // Update state on successful login
+      state.deletionSuccess = true;
+      state.deletionLoading = false;
+      state.deletionError = false;
+      state.error = null;
+    });
+    builder.addCase(deleteAdventure.rejected, (state, action) => {
+      // Update state on login failure
       state.creationSuccess = false;
       state.creationLoading = true;
-      state.creationError = true;
+      state.deletionError = true;
       if (action.error.message === "Request failed with status code 409") {
-        console.log("yee: ", action.error.message);
         state.error = "Adventure by this name already exists.";
       }
     });

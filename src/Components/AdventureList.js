@@ -77,7 +77,7 @@ const AdventureList = () => {
             color: '#fff',
             fontWeight: '400',
             borderColor: '#97bf0f',
-            fontSize: '2rem',
+            fontSize: '1.9rem',
           }}
           onClick={handleAddAdventureButtonClick}
         >
