@@ -37,7 +37,6 @@ const AdventureList = () => {
   useEffect(() => {
     dispatch(resetCreationError());
     dispatch(getAllAdventures());
-    console.log('the adventures: ', adventures);
   }, []);
   // Fetch adventure data from the server on component mount
   const user = localStorage.getItem('id');
@@ -78,7 +77,7 @@ const AdventureList = () => {
             color: '#fff',
             fontWeight: '400',
             borderColor: '#97bf0f',
-            fontSize: '2rem',
+            fontSize: '1.9rem',
           }}
           onClick={handleAddAdventureButtonClick}
         >
@@ -111,6 +110,7 @@ const AdventureList = () => {
                 key={adventure.id}
                 picture={adventure.picture}
                 description={adventure.description}
+                adventureId={adventure.id}
               />
             </Link>
           ))}
