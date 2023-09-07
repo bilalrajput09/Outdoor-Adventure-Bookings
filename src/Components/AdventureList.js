@@ -5,18 +5,12 @@ import { resetCreationError } from '../redux/slice/adventureSlice';
 import fetchAdventuresData from '../redux/adventureActions';
 import { getAllAdventures } from '../redux/slice/adventureSlice';
 import Adventure from './Adventure';
-import { logout } from '../redux/slice/userSlice';
+import { checkCurrentUser } from '../App';
 
 const AdventureList = () => {
   const dispatch = useDispatch();
   const [adventures, setAdventures] = useState([]);
   const navigate = useNavigate();
-
-  const logOutUser = () => {
-    dispatch(logout());
-    navigate('/login');
-    localStorage.removeItem('id');
-  };
 
   // get list of adventures from api
   useEffect(() => {
@@ -42,11 +36,6 @@ const AdventureList = () => {
   const user = localStorage.getItem('id');
   useEffect(() => {
     dispatch(fetchAdventuresData());
-    if (!isAuthenticated && user === null) {
-      navigate('/login');
-    } else if (user) {
-      navigate('/');
-    }
   }, [dispatch, navigate, isAuthenticated, user]);
 
   // handle adding adventure categories
@@ -56,33 +45,44 @@ const AdventureList = () => {
 
   return (
     <>
-      <div className="position-absolute top-0 end-0 mt-5 me-3 cursor-pointer">
-        <div
-          className="text-center position-relative mt-3   cursor-pointer"
-          onClick={logOutUser}
-        >
-          <img src="/log-out.png" alt="Log Out" style={{ cursor: 'pointer' }} />
-          <p>
-            <b>S-out</b>
-          </p>
-        </div>
-      </div>
       <div className="text-center mt-4">
         <h1 className="text-center mt-2">Latest Adventures</h1>
         <br />
-        <button
-          className="btn btn-lg btn-primary"
-          style={{
-            backgroundColor: '#97bf0f',
-            color: '#fff',
-            fontWeight: '400',
-            borderColor: '#97bf0f',
-            fontSize: '1.9rem',
-          }}
-          onClick={handleAddAdventureButtonClick}
-        >
-          New Adventure!
-        </button>
+        {checkCurrentUser() ? (
+          <button
+            className="btn btn-lg btn-primary"
+            style={{
+              backgroundColor: '#97bf0f',
+              color: '#fff',
+              fontWeight: '400',
+              borderColor: '#97bf0f',
+              fontSize: '1.9rem',
+            }}
+            onClick={handleAddAdventureButtonClick}
+          >
+            New Adventure!
+          </button>
+        ) : (
+          <>
+            <Link
+              to={'/signup'}
+              className="btn"
+              style={{
+                backgroundColor: '#97bf0f',
+                color: '#fff',
+                fontWeight: '400',
+                borderColor: '#97bf0f',
+                fontSize: '1.9rem',
+              }}
+            >
+              Signup!
+            </Link>
+            <p className="mt-3">
+              Already have an account? <Link to={'/login'}>Login</Link>.
+            </p>
+          </>
+        )}
+
         <p className="font-weight-bold fs-3 mt-4 ">
           Here, you also get to design your own{' '}
           <span

@@ -8,8 +8,14 @@ import { checkCurrentUser } from '../App';
 function LoginForm() {
   // Extracting user-related state and functions from Redux
 
-  const { user, error, isAuthenticated, isLoginSuccess, isLoginError } =
-    useSelector((store) => store.user);
+  const {
+    user,
+    error,
+    isAuthenticated,
+    isLoginSuccess,
+    isLoginError,
+    isLoginLoading,
+  } = useSelector((store) => store.user);
   const myInputRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +37,6 @@ function LoginForm() {
     event.preventDefault();
     dispatch(login(myInputRef.current.value));
   };
-
   return (
     <div className="container mt-5">
       <div className="row d-flex justify-content-center">
@@ -45,9 +50,15 @@ function LoginForm() {
               ref={myInputRef}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
-            Login
+
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isLoginLoading}
+          >
+            {isLoginLoading ? 'Logging in...' : 'Login'}
           </button>
+
           <p>{isLoginError && error}</p>
           <p>
             Don't have an account? <Link to={'/signup'}>Sign up</Link>.

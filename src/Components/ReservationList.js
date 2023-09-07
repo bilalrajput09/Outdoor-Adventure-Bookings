@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchUserReservations } from '../redux/slice/reservationAction';
 import Adventure from './Adventure';
+import { checkCurrentUser } from '../App';
 
 const ReservationList = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchUserReservations());
   }, [dispatch]);
@@ -14,6 +16,9 @@ const ReservationList = () => {
   const adventures_ids = reservations.map(
     (reservation) => reservation.adventure_id,
   );
+  if (!checkCurrentUser()) {
+    navigate('/login');
+  }
   if (!adventures[0]) {
     return;
   }
@@ -22,7 +27,7 @@ const ReservationList = () => {
   );
   return (
     <>
-      <h1 className="text-center mb-5">Reservations</h1>
+      <h1 className="text-center mb-5">My Reservations</h1>
       {reservations.length > 0 && (
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {reservedAdventures.map((adventure) => (

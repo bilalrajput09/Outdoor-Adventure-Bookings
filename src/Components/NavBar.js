@@ -1,65 +1,86 @@
-import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logout } from '../redux/slice/userSlice';
+import { Link } from 'react-router-dom';
 import navImg from '../assets/images/menu.png';
 import './NavBar.css';
 import logo from '../assets/images/mountain-adventure-club-logo-design-template-f30d0b2135369f3d04623f458d7a8714_screen.jpg';
-import { BsFacebook } from 'react-icons/bs';
+import { BsFacebook, BsWhatsapp } from 'react-icons/bs';
 import { BsInstagram } from 'react-icons/bs';
 import { BsGoogle } from 'react-icons/bs';
 import { BsPinterest } from 'react-icons/bs';
+import { BsGithub } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+  const user = useSelector((state) => state.user.user);
   return (
     <div className=" bg-body-tertiary">
       <img
         src={navImg}
-        class="pt-3 pb-3 ms-4"
+        className="pt-4 pb-3 ms-4"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions"
         aria-controls="offcanvasWithBothOptions"
       ></img>
       <div
-        class="offcanvas offcanvas-start"
+        className="offcanvas offcanvas-start"
         data-bs-scroll="true"
-        tabindex="-1"
+        tabIndex="-1"
         id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel"
       >
         <div className="d-flex justify-content-start">
-          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-            <img src={logo} className="w-50 mt-3 ms-3"></img>
+          <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+            <Link to={'/'}>
+              <img
+                src={logo}
+                className="w-50 mt-3 ms-3 "
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></img>
+            </Link>
           </h5>
-          <div class="offcanvas-header">
+          <div className="offcanvas-header">
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
             ></button>
           </div>
         </div>
         <div
-          class="offcanvas-body"
+          className="offcanvas-body"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         >
-          <Link to={'/reservations'} className="nav-link">
-            Reservations
+          <Link to={'/'} className="nav-link">
+            Adventures
           </Link>
           <br></br>
-          <Link to={'/addAdventure'} className="nav-link">
-            Add Adventure
-          </Link>
+          {user !== null && (
+            <>
+              <Link to={'/reservations'} className="nav-link">
+                Reservations
+              </Link>
+              <br></br>
+              <Link to={'/addAdventure'} className="nav-link">
+                Add Adventure
+              </Link>
+            </>
+          )}
+
+          {user === null && (
+            <Link to={'/signup'} className="nav-link">
+              Signup
+            </Link>
+          )}
+
           <br></br>
-          <Link to={'/signup'} className="nav-link">
-            Signup
-          </Link>
-          <br></br>
-          <Link to={'/login'} className="nav-link">
-            Login
-          </Link>
+          {user === null && (
+            <Link to={'/login'} className="nav-link">
+              Login
+            </Link>
+          )}
         </div>
 
         <div className="sticky-footer mb-2 ms-3 d-flex flex-column">
@@ -75,6 +96,12 @@ const NavBar = () => {
             </Link>
             <Link to={'/login'} className="nav-link">
               <BsPinterest />
+            </Link>
+            <Link to={'/login'} className="nav-link">
+              <BsGithub />
+            </Link>
+            <Link to={'/login'} className="nav-link">
+              <BsWhatsapp />
             </Link>
           </div>
           <div className="ms-2">
