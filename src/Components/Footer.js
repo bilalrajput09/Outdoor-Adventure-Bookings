@@ -13,7 +13,18 @@ const Footer = () => {
             >
               {' Bilal Ahmed '}
             </Link>
-            and TEAM
+            <Link
+              to="https://github.com/Daniel-Kigozi"
+              className="link-warning"
+            >
+              {' Daniel Kigozi '}
+            </Link>
+            <Link
+              to="https://github.com/kalbek"
+              className="link-warning"
+            >
+              {' Bekele Kaleb '}
+            </Link>
           </p>
           <p>
             <Link to="/" className="text-white">
