@@ -1,11 +1,9 @@
-import adventureImage from '../assets/images/istockphoto-516449022-612x612.jpg';
-
-const Adventure = ({ name, description }) => {
+const Adventure = ({ name, description, picture }) => {
   return (
     <div className="col">
       <div className="card h-100">
         <img
-          src={adventureImage}
+          src={'display-' + picture}
           className="card-img-top"
           alt="Adventure"
         ></img>

@@ -9,7 +9,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   const logOutUser = () => {
-    // dispatch(logout());
+    dispatch(logout());
     navigate('/login');
     localStorage.removeItem('id');
   };
