@@ -88,7 +88,7 @@ const AdventureShow = () => {
                 </small>
               </p>
             </div>
-            <div className="mt-auto">
+            <div className="mt-auto m-2">
               {isReserved ? (
                 <button
                   className="btn btn-warning"
