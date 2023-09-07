@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAdventuresData } from './adventureActions';
+import fetchAdventuresData from './adventureActions';
 
 const adventuresInitialState = {
   adventures: [],
