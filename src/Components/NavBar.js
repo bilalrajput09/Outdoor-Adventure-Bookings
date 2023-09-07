@@ -10,35 +10,11 @@ import { BsGoogle } from 'react-icons/bs';
 import { BsPinterest } from 'react-icons/bs';
 
 const NavBar = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const logOutUser = () => {
-    dispatch(logout());
-    navigate('/login');
-    localStorage.removeItem('id');
-  };
   return (
-    <div className="nav">
-      <div className="position-absolute top-0 end-0 m-10 cursor-pointer">
-        <div
-          className="text-center position-relative m-4  cursor-pointer"
-          onClick={logOutUser}
-        >
-          <img
-            src="/log-out.png"
-            className="text-center position-relative justify-content-end mt"
-            alt="Log Out"
-            style={{ cursor: 'pointer' }}
-          />
-          <p>
-            <b>S-out</b>
-          </p>
-        </div>
-      </div>
+    <div className=" bg-body-tertiary">
       <img
         src={navImg}
-        class="mt-4 ms-4"
+        class="pt-3 pb-3 ms-4"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions"
@@ -64,7 +40,11 @@ const NavBar = () => {
             ></button>
           </div>
         </div>
-        <div class="offcanvas-body">
+        <div
+          class="offcanvas-body"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        >
           <Link to={'/reservations'} className="nav-link">
             Reservations
           </Link>
