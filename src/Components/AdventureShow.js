@@ -88,19 +88,33 @@ const AdventureShow = () => {
                 </small>
               </p>
             </div>
-            <div className="mt-auto m-2">
-              {isReserved ? (
-                <button
-                  className="btn btn-warning"
-                  onClick={deleteReserveHandler}
-                >
-                  Cancel Reservation
-                </button>
-              ) : (
-                <button className="btn btn-success" onClick={reserveHandler}>
-                  Reserve
-                </button>
-              )}
+            <div className="row">
+              <div className="col">
+                <div className="mt-auto m-2">
+                  {isReserved ? (
+                    <button
+                      className="btn btn-warning"
+                      onClick={deleteReserveHandler}
+                    >
+                      Cancel Reservation
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-success"
+                      onClick={reserveHandler}
+                    >
+                      Reserve
+                    </button>
+                  )}
+                </div>
+              </div>
+              <div className="col">
+                <div className="mt-auto m-2">
+                  <button className="btn btn-danger" onClick={reserveHandler}>
+                    Delete Adventure
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
