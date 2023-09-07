@@ -7,6 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'jquery/dist/jquery.min.js';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter from react-router-dom
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootComponent from './root/RootComponent';
 import LoginForm from './Components/LoginForm';
@@ -42,3 +43,4 @@ root.render(
     </RouterProvider>
   </Provider>,
 );
+
