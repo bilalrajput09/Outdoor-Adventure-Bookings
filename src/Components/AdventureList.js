@@ -46,13 +46,15 @@ const AdventureList = () => {
   }
 
   const myInputRef = useRef();
+  function capitalizeWord(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
 
   const [searchedAdventures, setSearchedAdventures] = useState([]);
   const searchAdventures = () => {
     const searchedAdventuresArray = adventures.filter((adventure) =>
-      adventure.name.startsWith(myInputRef.current.value),
+      adventure.name.startsWith(capitalizeWord(myInputRef.current.value)),
     );
-    console.log(searchedAdventures);
     if (searchedAdventuresArray !== null) {
       setSearchedAdventures(searchedAdventuresArray);
     }

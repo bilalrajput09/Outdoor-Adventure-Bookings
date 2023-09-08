@@ -89,10 +89,16 @@ const NavBar = () => {
 
         <div className="sticky-footer mb-2 ms-3 d-flex flex-column">
           <div className="d-flex mb-3">
-            <Link to={'/login'} className="nav-link">
+            <Link
+              to={'https://www.facebook.com/sweet.apple.bilal1213986/'}
+              className="nav-link"
+            >
               <BsFacebook />
             </Link>
-            <Link to={'/login'} className="nav-link">
+            <Link
+              to={'https://www.instagram.com/bilalrajput____/'}
+              className="nav-link"
+            >
               <BsInstagram />
             </Link>
             <Link to={'/login'} className="nav-link">
@@ -101,7 +107,7 @@ const NavBar = () => {
             <Link to={'/login'} className="nav-link">
               <BsPinterest />
             </Link>
-            <Link to={'/login'} className="nav-link">
+            <Link to={'https://github.com/bilalrajput09'} className="nav-link">
               <BsGithub />
             </Link>
             <Link to={'/login'} className="nav-link">
