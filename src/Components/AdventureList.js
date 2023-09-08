@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { resetCreationError } from '../redux/slice/adventureSlice';
@@ -6,6 +6,8 @@ import fetchAdventuresData from '../redux/adventureActions';
 import { getAllAdventures } from '../redux/slice/adventureSlice';
 import Adventure from './Adventure';
 import { checkCurrentUser } from '../App';
+import SearchComponent from './SearchComponent';
+import ModelSearchedAdventures from './ModelSearchedAdventures';
 
 const AdventureList = () => {
   const dispatch = useDispatch();
@@ -43,8 +45,27 @@ const AdventureList = () => {
     navigate('/addAdventure');
   }
 
+  const myInputRef = useRef();
+
+  const [searchedAdventures, setSearchedAdventures] = useState([]);
+  const searchAdventures = () => {
+    const searchedAdventuresArray = adventures.filter((adventure) =>
+      adventure.name.startsWith(myInputRef.current.value),
+    );
+    console.log(searchedAdventures);
+    if (searchedAdventuresArray !== null) {
+      setSearchedAdventures(searchedAdventuresArray);
+    }
+    return [];
+  };
+
   return (
     <>
+      <SearchComponent
+        myInputRef={myInputRef}
+        searchAdventures={searchAdventures}
+      />
+      <ModelSearchedAdventures searchedAdventures={searchedAdventures} />
       <div className="text-center mt-4">
         <h1 className="text-center mt-2">Latest Adventures</h1>
         <br />

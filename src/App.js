@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Search from './Components/Search';
 import AdventureList from './Components/AdventureList';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -31,7 +30,6 @@ function App() {
   }, [dispatch]);
   return (
     <>
-      <Search />
       <div className="container">
         <AdventureList />
       </div>
