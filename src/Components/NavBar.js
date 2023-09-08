@@ -23,9 +23,6 @@ const NavBar = () => {
           data-bs-target="#offcanvasWithBothOptions"
           aria-controls="offcanvasWithBothOptions"
         ></img>
-        <div>
-          <SearchComponent />
-        </div>
       </div>
 
       <div
