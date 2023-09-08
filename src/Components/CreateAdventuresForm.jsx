@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Dropdown } from 'react-bootstrap';
-import { createAdventure } from '../redux/slice/adventureSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
+  createAdventure,
   setErrorMessage,
   resetCreationError,
 } from '../redux/slice/adventureSlice';
@@ -19,8 +19,9 @@ function CreateAdventuresForm() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, creationSuccess, creationLoading, creationError } =
-    useSelector((store) => store.adventures);
+  const { error, creationSuccess, creationError } = useSelector(
+    (store) => store.adventures,
+  );
   // Update state on successful login}
 
   // State variable for form data (name, selected picture, description)
@@ -50,18 +51,18 @@ function CreateAdventuresForm() {
 
   // navigate to adventures index page on successful new adventure creation
   useEffect(() => {
-    console.log('creation success: ', creationSuccess);
     if (creationSuccess) navigate('/');
-  }, [creationSuccess]);
+  }, [creationSuccess, navigate]);
 
   // Effect to update form data when selectedCategory changes
   useEffect(() => {
-    selectedCategory &&
+    if (selectedCategory) {
       setFormData({
         name: selectedCategory.name,
         selectedPicture: selectedCategory.image_url,
         description: selectedCategory.description,
       });
+    }
   }, [selectedCategory]);
 
   // Form submission handler (not yet implemented)
@@ -88,14 +89,12 @@ function CreateAdventuresForm() {
       .then((data) => {
         setCategories(data);
       })
-      .catch((error) => {
-        console.error('Error loading adventure categories:', error);
-      });
+      .catch((error) => error);
   }, []);
 
   useEffect(() => {
     dispatch(resetCreationError());
-  }, [selectedCategory]);
+  }, [selectedCategory, dispatch]);
 
   // JSX rendering for the component
 
@@ -193,7 +192,8 @@ function CreateAdventuresForm() {
                     onClick={() => setSelectedCategory(category)}
                   >
                     <img src={category.image_url} alt={category.image_alt} />
-                    &nbsp;{category.name}
+                    &nbsp;
+                    {category.name}
                   </Dropdown.Item>
                 ))}
               </Dropdown.Menu>
