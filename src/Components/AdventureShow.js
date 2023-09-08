@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnAdventure } from '../redux/slice/adventureSlice';
 import addNewReservation from '../redux/slice/reservationAction';
@@ -54,10 +53,14 @@ const AdventureShow = () => {
     }
   }, [currentAdventure]);
 
+  const reservations = useSelector((state) => state.reservations.reservations);
+  const [isReserved, setIsReserved] = useState(
+    checkReservation(reservations, id),
+  );
   const reserveHandler = () => {
     dispatch(addNewReservation(id));
+    setIsReserved(true);
   };
-  const reservations = useSelector((state) => state.reservations.reservations);
   const deleteReserveHandler = () => {
     const idInt = +id;
     const reservation_index = reservations.findIndex((reservation) => {
@@ -66,7 +69,7 @@ const AdventureShow = () => {
 
     const reservation_id = reservations[reservation_index].id;
     dispatch(deleteReservation(reservation_id));
-    navigate('/');
+    setIsReserved(false);
   };
 
   // deleting adventure
@@ -82,8 +85,6 @@ const AdventureShow = () => {
   const handleDelete = () => {
     dispatch(deleteAdventure(id));
   };
-
-  const isReserved = checkReservation(reservations, id);
 
   return (
     <>
