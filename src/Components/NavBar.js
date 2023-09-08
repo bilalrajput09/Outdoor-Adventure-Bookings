@@ -8,19 +8,26 @@ import { BsGoogle } from 'react-icons/bs';
 import { BsPinterest } from 'react-icons/bs';
 import { BsGithub } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
+import SearchComponent from './SearchComponent';
 
 const NavBar = () => {
   const user = useSelector((state) => state.user.user);
   return (
     <div className=" bg-body-tertiary">
-      <img
-        src={navImg}
-        className="pt-4 pb-3 ms-4"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasWithBothOptions"
-        aria-controls="offcanvasWithBothOptions"
-      ></img>
+      <div className="d-flex justify-content-between">
+        <img
+          src={navImg}
+          className="pt-4 pb-3 ms-4"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasWithBothOptions"
+          aria-controls="offcanvasWithBothOptions"
+        ></img>
+        <div>
+          <SearchComponent />
+        </div>
+      </div>
+
       <div
         className="offcanvas offcanvas-start"
         data-bs-scroll="true"
