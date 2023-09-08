@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAnAdventure } from '../redux/slice/adventureSlice';
-import addNewReservation from '../redux/slice/reservationAction';
-import { deleteAdventure } from '../redux/slice/adventureSlice';
-import {
+import { getAnAdventure, deleteAdventure } from '../redux/slice/adventureSlice';
+import addNewReservation, {
   fetchUserReservations,
   deleteReservation,
 } from '../redux/slice/reservationAction';
-import { checkCurrentUser } from '../App';
 
+import checkCurrentUser from '../redux/actions/userActions';
+
+const checkReservation = (reservations, id) => {
+  const idInt = +id;
+  const index = reservations.findIndex(
+    (reservation) => reservation.adventure_id === idInt,
+  );
+  if (index !== -1) {
+    return true;
+  }
+  return false;
+};
 const AdventureShow = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -18,9 +27,7 @@ const AdventureShow = () => {
     (store) => store.adventures.currentAdventure,
   );
 
-  const { deletionSuccess, deletionLoading, deletionError } = useSelector(
-    (state) => state.adventures,
-  );
+  const { deletionSuccess } = useSelector((state) => state.adventures);
   const user = useSelector((state) => state.user.user);
 
   // Add code to fetch adventure details using the adventure ID
@@ -63,12 +70,12 @@ const AdventureShow = () => {
   };
   const deleteReserveHandler = () => {
     const idInt = +id;
-    const reservation_index = reservations.findIndex((reservation) => {
-      return reservation.adventure_id === idInt;
-    });
+    const reservationIndex = reservations.findIndex(
+      (reservation) => reservation.adventure_id === idInt,
+    );
 
-    const reservation_id = reservations[reservation_index].id;
-    dispatch(deleteReservation(reservation_id));
+    const reservationId = reservations[reservationIndex].id;
+    dispatch(deleteReservation(reservationId));
     setIsReserved(false);
   };
 
@@ -80,7 +87,7 @@ const AdventureShow = () => {
   // redirect to adventure list on successfull deletion
   useEffect(() => {
     deletionSuccess && navigate('/');
-  }, [deletionSuccess]);
+  }, [deletionSuccess, navigate]);
 
   const handleDelete = () => {
     dispatch(deleteAdventure(id));
@@ -95,8 +102,8 @@ const AdventureShow = () => {
             <img
               src={`/display-${adventurePicture}`}
               className="img-fluid rounded-start"
-              alt={`${adventureName} image`}
-            ></img>
+              alt={`${adventureName}`}
+            />
           </div>
           <div className="col-md-4 d-flex flex-column">
             <div className="card-body">
@@ -104,7 +111,8 @@ const AdventureShow = () => {
               <p className="card-text">{adventureDescription}</p>
               <p className="card-text">
                 <small className="text-body-secondary mt-auto">
-                  Created at{' '}
+                  Created at
+                  {' '}
                   {formattedDate.toLocaleDateString('en-US', options)}
                 </small>
               </p>
@@ -116,6 +124,7 @@ const AdventureShow = () => {
                     {isReserved ? (
                       <button
                         className="btn btn-warning"
+                        type="button"
                         onClick={deleteReserveHandler}
                       >
                         Cancel Reservation
@@ -123,12 +132,17 @@ const AdventureShow = () => {
                     ) : (
                       <button
                         className="btn btn-success"
+                        type="button"
                         onClick={reserveHandler}
                       >
                         Reserve
                       </button>
                     )}
-                    <button className="btn btn-danger" onClick={handleDelete}>
+                    <button
+                      className="btn btn-danger"
+                      type="button"
+                      onClick={handleDelete}
+                    >
                       Delete Adventure
                     </button>
                   </div>
@@ -143,15 +157,3 @@ const AdventureShow = () => {
 };
 
 export default AdventureShow;
-
-const checkReservation = (reservations, id) => {
-  const idInt = +id;
-  const index = reservations.findIndex((reservation) => {
-    return reservation.adventure_id === idInt;
-  });
-  if (index !== -1) {
-    return true;
-  } else {
-    return false;
-  }
-};

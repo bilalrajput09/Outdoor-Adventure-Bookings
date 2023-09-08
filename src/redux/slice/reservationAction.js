@@ -5,7 +5,7 @@ const addNewReservation = createAsyncThunk(
   'reservation/add',
   async (adventureID) => {
     const reservationData = {
-      adventureID: adventureID,
+      adventureID,
       currentUserID: currentUserObj().id,
     };
     const response = await fetch('http://localhost:3000/api/v1/reservations', {
@@ -15,10 +15,6 @@ const addNewReservation = createAsyncThunk(
       },
       body: JSON.stringify(reservationData),
     });
-
-    if (!response.ok) {
-      console.log('The reservation is not created!');
-    }
 
     const data = await response.json();
     return [...data.reservations];
@@ -51,9 +47,9 @@ export const fetchUserReservations = createAsyncThunk(
 
 export const deleteReservation = createAsyncThunk(
   'delete/reservation',
-  async (reservation_id) => {
+  async (reservationId) => {
     const reservationDetails = {
-      reservation_id: reservation_id,
+      reservation_id: reservationId,
       currentUserID: currentUserObj().id,
     };
 
@@ -67,10 +63,6 @@ export const deleteReservation = createAsyncThunk(
         },
       },
     );
-
-    if (!response.ok) {
-      console.log('Something went wrong');
-    }
     const data = await response.json();
 
     return [...data.reservations];

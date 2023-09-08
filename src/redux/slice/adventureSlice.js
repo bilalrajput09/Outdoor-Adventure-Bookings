@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import fetchAdventuresData from '../adventureActions';
 import axios from 'axios';
+import fetchAdventuresData from '../adventureActions';
 
 const adventuresInitialState = {
   adventures: [],
@@ -17,7 +17,7 @@ const adventuresInitialState = {
 
 export const createAdventure = createAsyncThunk(
   'adventure/create',
-  async ({ formData, user }) => {
+  async ({ formData }) => {
     try {
       const { name, selectedPicture, description } = formData;
       const response = await axios.post(
@@ -32,7 +32,8 @@ export const createAdventure = createAsyncThunk(
       // Check if the response status is 201 (adventure created successfully.)
       if (response.status === 201) {
         return response.data;
-      } else if (response.status === 409) {
+      }
+      if (response.status === 409) {
         // Throw a custom error with the desired message
         throw new Error();
       } else {
@@ -94,7 +95,7 @@ const adventuresSlice = createSlice({
     }),
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAdventuresData.fulfilled, (state, action) => {
+    builder.addCase(fetchAdventuresData.fulfilled, () => {
       // state.adventures = [...action.payload];
     });
     builder.addCase(createAdventure.pending, (state) => {
@@ -103,7 +104,7 @@ const adventuresSlice = createSlice({
       state.creationLoading = true;
       state.creationError = false;
     });
-    builder.addCase(createAdventure.fulfilled, (state, action) => {
+    builder.addCase(createAdventure.fulfilled, (state) => {
       // Update state on successful login
       state.creationSuccess = true;
       state.creationLoading = false;
@@ -125,7 +126,7 @@ const adventuresSlice = createSlice({
       state.deletionLoading = true;
       state.deletionError = false;
     });
-    builder.addCase(deleteAdventure.fulfilled, (state, action) => {
+    builder.addCase(deleteAdventure.fulfilled, (state) => {
       // Update state on successful login
       state.deletionSuccess = true;
       state.deletionLoading = false;
@@ -141,12 +142,12 @@ const adventuresSlice = createSlice({
         state.error = 'Adventure by this name already exists.';
       }
     });
-    builder.addCase(getAllAdventures.pending, (state) => {});
+    builder.addCase(getAllAdventures.pending, () => {});
     builder.addCase(getAllAdventures.fulfilled, (state, action) => {
       // state.adventures.splice(0);
       state.adventures.push(action.payload);
     });
-    builder.addCase(getAllAdventures.rejected, (state, action) => {});
+    builder.addCase(getAllAdventures.rejected, () => {});
 
     builder.addCase(getAnAdventure.fulfilled, (state, action) => {
       // Update state on successful fetch of an individual adventure

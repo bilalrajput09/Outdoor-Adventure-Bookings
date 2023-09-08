@@ -1,6 +1,7 @@
-import { logout } from '../redux/slice/userSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../redux/slice/userSlice';
+
 const SignOutBtn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -12,15 +13,16 @@ const SignOutBtn = () => {
   };
   return (
     <div className="cursor-pointer">
-      <div
-        className="text-center position-relative mt-3   cursor-pointer"
+      <button
+        className="text-center position-relative mt-3   cursor-pointer bg-none btn"
+        type="button"
         onClick={logOutUser}
       >
         <img src="/log-out.png" alt="Log Out" style={{ cursor: 'pointer' }} />
         <p>
           <b>S-out</b>
         </p>
-      </div>
+      </button>
     </div>
   );
 };

@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { resetCreationError } from '../redux/slice/adventureSlice';
+import {
+  resetCreationError,
+  getAllAdventures,
+} from '../redux/slice/adventureSlice';
 import fetchAdventuresData from '../redux/adventureActions';
-import { getAllAdventures } from '../redux/slice/adventureSlice';
+
 import Adventure from './Adventure';
-import { checkCurrentUser } from '../App';
+import checkCurrentUser from '../redux/actions/userActions';
 import SearchComponent from './SearchComponent';
 import ModelSearchedAdventures from './ModelSearchedAdventures';
 
@@ -22,9 +25,7 @@ const AdventureList = () => {
         data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setAdventures(data);
       })
-      .catch((error) => {
-        console.error('Error loading adventure categories:', error);
-      });
+      .catch((error) => error);
   }, []);
   // Check if the user is authenticated
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -33,7 +34,7 @@ const AdventureList = () => {
   useEffect(() => {
     dispatch(resetCreationError());
     dispatch(getAllAdventures());
-  }, []);
+  }, [dispatch]);
   // Fetch adventure data from the server on component mount
   const user = localStorage.getItem('id');
   useEffect(() => {
@@ -46,17 +47,14 @@ const AdventureList = () => {
   }
 
   const myInputRef = useRef();
-  function capitalizeWord(word) {
+  function capitalWord(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
-
   const [searchedAdventures, setSearchedAdventures] = useState([]);
   const searchAdventures = () => {
-    const searchedAdventuresArray = adventures.filter((adventure) =>
-      adventure.name.startsWith(capitalizeWord(myInputRef.current.value)),
-    );
-    if (searchedAdventuresArray !== null) {
-      setSearchedAdventures(searchedAdventuresArray);
+    const sAD = adventures.filter((a) => a.name.startsWith(capitalWord(myInputRef.current.value)));
+    if (sAD !== null) {
+      setSearchedAdventures(sAD);
     }
     return [];
   };
@@ -74,6 +72,7 @@ const AdventureList = () => {
         {checkCurrentUser() ? (
           <button
             className="btn btn-lg btn-primary"
+            type="button"
             style={{
               backgroundColor: '#97bf0f',
               color: '#fff',
@@ -88,7 +87,7 @@ const AdventureList = () => {
         ) : (
           <>
             <Link
-              to={'/signup'}
+              to="/signup"
               className="btn"
               style={{
                 backgroundColor: '#97bf0f',
@@ -101,13 +100,17 @@ const AdventureList = () => {
               Signup!
             </Link>
             <p className="mt-3">
-              Already have an account? <Link to={'/login'}>Login</Link>.
+              Already have an account?
+              {' '}
+              <Link to="/login">Login</Link>
+              .
             </p>
           </>
         )}
 
         <p className="font-weight-bold fs-3 mt-4 ">
-          Here, you also get to design your own{' '}
+          Here, you also get to design your own
+          {' '}
           <span
             style={{
               color: '#d35504',
@@ -124,7 +127,7 @@ const AdventureList = () => {
         <div className="row row-cols-1 row-cols-md-3 g-4 mt-1">
           {adventures.map((adventure) => (
             <Link
-              to={'/adventures/' + adventure.id}
+              to={`/adventures/${adventure.id}`}
               key={adventure.id}
               className="btn"
             >
@@ -144,11 +147,7 @@ const AdventureList = () => {
         <div className="row row-cols-1 row-cols-md-3 g-4 mt-1">
           <div className="col">
             <div className="card h-100">
-              <img
-                src="/sad.png"
-                className="card-img-top"
-                alt="Adventure"
-              ></img>
+              <img src="/sad.png" className="card-img-top" alt="Adventure" />
               <div className="card-body">
                 <h5 className="card-title">No Adventures</h5>
                 <p className="card-text">

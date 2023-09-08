@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const setUserInLocalStorage = (user) => {
+  localStorage.setItem('id', JSON.stringify(user));
+};
+
 // Initial state for the userSlice
 const initialState = {
   user: null, // User information
@@ -27,10 +31,6 @@ export const login = createAsyncThunk('user/login', async (username) => {
     throw error.message; // Throwing error message on failure
   }
 });
-
-const setUserInLocalStorage = (user) => {
-  localStorage.setItem('id', JSON.stringify(user));
-};
 
 // Async action to sign up a user
 export const signup = createAsyncThunk('user/signup', async (username) => {
@@ -82,7 +82,7 @@ const userSlice = createSlice({
       state.message = action.payload.message;
       state.error = null;
     });
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(login.rejected, (state) => {
       // Update state on login failure
       state.isAuthenticated = false;
       state.isLoginSuccess = false;
@@ -108,7 +108,7 @@ const userSlice = createSlice({
       state.message = action.payload;
       state.error = null;
     });
-    builder.addCase(signup.rejected, (state, action) => {
+    builder.addCase(signup.rejected, (state) => {
       // Update state on signup failure
       state.isSignupSuccess = false;
       state.isSignupLoading = false;

@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'jquery/dist/jquery.min.js';
-import { Provider } from 'react-redux';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'jquery/dist/jquery.min';
+
 import store from './redux/store';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import RootComponent from './root/RootComponent';
 import LoginForm from './Components/LoginForm';
 import RegisterForm from './Components/RegisterForm';

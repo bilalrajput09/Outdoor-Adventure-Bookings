@@ -1,16 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
-import AdventureList from './Components/AdventureList';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { authenticateUser } from './redux/slice/userSlice';
+import AdventureList from './Components/AdventureList';
 
-export const checkCurrentUser = () => {
-  if (localStorage.getItem('id') !== null) {
-    return true;
-  }
-  return false;
-};
+import { authenticateUser } from './redux/slice/userSlice';
+import checkCurrentUser from './redux/actions/userActions';
 
 export const currentUserObj = () => {
   if (localStorage.getItem('id') !== null) {

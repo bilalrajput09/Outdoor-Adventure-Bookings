@@ -9,7 +9,7 @@ const initialState = {
 };
 const reservationSlice = createSlice({
   name: 'reservation',
-  initialState: initialState,
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addNewReservation.fulfilled, (state, action) => {

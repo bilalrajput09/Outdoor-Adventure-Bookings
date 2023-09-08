@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { signup } from '../redux/slice/userSlice';
 import { useEffect } from 'react';
-import { checkCurrentUser } from '../App';
-
+import checkCurrentUser from '../redux/actions/userActions';
 function RegisterForm() {
   // Extracting user-related state and functions from Redux
   const {

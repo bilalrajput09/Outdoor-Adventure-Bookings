@@ -8,7 +8,7 @@ import {
   resetCreationError,
 } from '../redux/slice/adventureSlice';
 
-import { checkCurrentUser } from '../App';
+import checkCurrentUser from '../redux/actions/userActions';
 
 // CreateAdventuresForm component for adding adventures
 function CreateAdventuresForm() {

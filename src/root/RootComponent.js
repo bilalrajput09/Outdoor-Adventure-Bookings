@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import NavBar from '../Components/NavBar';
 import Footer from '../Components/Footer';
 import SignOutBtn from '../Components/SignOutBtn';
-import { useSelector } from 'react-redux';
-import { checkCurrentUser, currentUserObj } from '../App';
+import { currentUserObj } from '../App';
 import { authenticateUser } from '../redux/slice/userSlice';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import checkCurrentUser from '../redux/actions/userActions';
+
 import { fetchUserReservations } from '../redux/slice/reservationAction';
 
 const RootComponent = () => {
@@ -18,7 +19,6 @@ const RootComponent = () => {
       dispatch(fetchUserReservations());
     }
   }, [dispatch]);
-  console.log('RootComponent');
   return (
     <>
       <NavBar />
