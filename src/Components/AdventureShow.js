@@ -31,7 +31,7 @@ const AdventureShow = () => {
   const user = useSelector((state) => state.user.user);
 
   // Add code to fetch adventure details using the adventure ID
-  const [formattedDate, setFormattedDate] = useState(new Date());
+  const [formattedDate] = useState(new Date());
   const [adventureName, setAdventureName] = useState('');
   const [adventurePicture, setAdventurePicture] = useState('');
   const [adventureDescription, setAdventureDescription] = useState('');
@@ -86,7 +86,9 @@ const AdventureShow = () => {
 
   // redirect to adventure list on successfull deletion
   useEffect(() => {
-    deletionSuccess && navigate('/');
+    if (deletionSuccess) {
+      navigate('/');
+    }
   }, [deletionSuccess, navigate]);
 
   const handleDelete = () => {

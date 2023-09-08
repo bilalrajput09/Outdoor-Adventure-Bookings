@@ -18,65 +18,49 @@ const adventuresInitialState = {
 export const createAdventure = createAsyncThunk(
   'adventure/create',
   async ({ formData }) => {
-    try {
-      const { name, selectedPicture, description } = formData;
-      const response = await axios.post(
-        'http://127.0.0.1:3000/api/v1/create_adventure',
-        {
-          // user_id: user.id,
-          name,
-          picture: selectedPicture,
-          description,
-        },
-      );
-      // Check if the response status is 201 (adventure created successfully.)
-      if (response.status === 201) {
-        return response.data;
-      }
-      if (response.status === 409) {
-        // Throw a custom error with the desired message
-        throw new Error();
-      } else {
-        throw new Error();
-      }
-    } catch (error) {
-      throw error;
+    const { name, selectedPicture, description } = formData;
+    const response = await axios.post(
+      'http://127.0.0.1:3000/api/v1/create_adventure',
+      {
+        // user_id: user.id,
+        name,
+        picture: selectedPicture,
+        description,
+      },
+    );
+    // Check if the response status is 201 (adventure created successfully.)
+    if (response.status === 201) {
+      return response.data;
+    }
+    if (response.status === 409) {
+      // Throw a custom error with the desired message
+      throw new Error();
+    } else {
+      throw new Error();
     }
   },
 );
 
 export const getAllAdventures = createAsyncThunk('adventures/get', async () => {
-  try {
-    const response = await axios.get('http://127.0.0.1:3000/api/v1/adventures');
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await axios.get('http://127.0.0.1:3000/api/v1/adventures');
+  return response.data;
 });
 
 export const deleteAdventure = createAsyncThunk(
   'adventures/delete',
   async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://127.0.0.1:3000/api/v1/adventures/${id}`,
-      );
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await axios.delete(
+      `http://127.0.0.1:3000/api/v1/adventures/${id}`,
+    );
+    return response.data;
   },
 );
 
 export const getAnAdventure = createAsyncThunk('adventure/get', async (id) => {
-  try {
-    const response = await axios.get(
-      `http://127.0.0.1:3000/api/v1/adventures/${id}`,
-    );
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await axios.get(
+    `http://127.0.0.1:3000/api/v1/adventures/${id}`,
+  );
+  return response.data;
 });
 
 const adventuresSlice = createSlice({
