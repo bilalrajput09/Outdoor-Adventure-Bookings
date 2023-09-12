@@ -23,7 +23,7 @@ const RootComponent = () => {
     <>
       <NavBar />
       {user !== null && (
-        <div className="position-fixed top-0 container d-flex justify-content-end mt-n8">
+        <div className="position-absolute top-0 end-0 d-inline-block">
           <SignOutBtn />
         </div>
       )}

@@ -4,7 +4,7 @@ import { FcSearch } from 'react-icons/fc';
 
 function SearchComponent({ myInputRef, searchAdventures }) {
   return (
-    <div className="position-absolute top-0 w-100 d-flex justify-content-center">
+    <div className="position-absolute top-0 start-50 translate-middle-x">
       <div className="row p-2">
         <div
           className="input-group mt-2"
@@ -25,8 +25,7 @@ function SearchComponent({ myInputRef, searchAdventures }) {
             style={{
               outline: '#0d6efd solid 2px',
             }}
-            className="btn
-           "
+            className="btn"
             type="button"
             onClick={searchAdventures}
             data-bs-toggle="modal"
