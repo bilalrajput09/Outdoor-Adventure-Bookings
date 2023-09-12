@@ -101,7 +101,6 @@ const adventuresSlice = createSlice({
       state.creationLoading = true;
       state.creationError = true;
       if (action.error.message === 'Request failed with status code 409') {
-        console.log('yee: ', action.error.message);
         state.error = 'Adventure by this name already exists.';
       }
     });
@@ -138,9 +137,6 @@ const adventuresSlice = createSlice({
         created_at: new Date(action.payload.created_at), // Convert to Date object
       };
       state.currentAdventure = action.payload;
-      // state.creationLoading = false;
-      // state.creationError = false;
-      // state.error = null;
     });
   },
 });
