@@ -34,14 +34,19 @@
 
 <!-- PROJECT DESCRIPTION -->
 # 📖 Outdoor Adventure Booking <a name="about-project"></a>
-- Outdoor adventure booking is a booking app for someone to explore the different adventures.
+
+- AdventureBooking is your gateway to thrilling outdoor experiences. Easily discover, plan, and book your next adrenaline-packed  adventure, whether it's hiking in the wilderness, conquering mountain peaks, or exploring hidden gems. Adventure awaits – start your journey today!"
 
 ## 🛠 Built With <a name="built-with"></a>
  - React
+ - Redux
+ - Bootstrap
 
 ## 🚀 Backend Project <a name="live-demo"></a>
 
 - [Link to Backend Project](https://github.com/bilalrajput09/Outdoor_Adventure_Bookings_Backend)
+
+-[DEPLOYMENT LINK]()
 
 <!-- GETTING STARTED -->
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -70,11 +75,6 @@ To run tests, run the following command:
 npm test
 
 <!-- AUTHORS -->
-👤 **Daniel Kigozi**
-
-- GitHub: [Daniel-Kigozi](https://github.com/Daniel-Kigozi)
-- Twitter: [@DanielKigozi15](https://twitter.com/@DanielKigozi15)
-- LinkedIn: [daniel-kigozi-375182208/](https://www.linkedin.com/in/daniel-kigozi-375182208/)
 
 👤 **Bilal Ahmed**
 
@@ -87,6 +87,12 @@ LinkedIn: [LinkedIn](https://www.linkedin.com/in/bilal-ahmed-18b12019a/)
 [github](https://github.com/kalbek)
 [portfolio](https://kalbek.github.io/Portfolio/)
 [linkedin](https://www.linkedin.com/in/kaleb-nuramo/)
+
+👤 **Daniel Kigozi**
+
+- GitHub: [Daniel-Kigozi](https://github.com/Daniel-Kigozi)
+- Twitter: [@DanielKigozi15](https://twitter.com/@DanielKigozi15)
+- LinkedIn: [daniel-kigozi-375182208/](https://www.linkedin.com/in/daniel-kigozi-375182208/)
 
 
 <!-- FUTURE FEATURES -->
