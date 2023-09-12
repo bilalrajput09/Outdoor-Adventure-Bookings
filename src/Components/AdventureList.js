@@ -46,9 +46,8 @@ const AdventureList = () => {
 
   return (
     <>
-      <div className="text-center mt-4">
+      <div className="text-center">
 
-        <h1 className="text-center mt-2">Latest Adventures</h1>
         <br />
         {checkCurrentUser() ? (
           <button
@@ -89,7 +88,7 @@ const AdventureList = () => {
           </>
         )}
 
-        <p className="font-weight-bold fs-3 mt-4 ">
+        <p className="font-weight-bold fs-3 mt-1 ">
           Here, you also get to design your own
           {' '}
           <span
@@ -102,10 +101,12 @@ const AdventureList = () => {
             adventures!!
           </span>
         </p>
+
       </div>
+      <h3 className="text-center-not mt-2">Latest Adventures</h3>
       {/* {adventures.length} */}
       {adventures.length > 0 && (
-        <div className="row row-cols-1 row-cols-md-3 g-4 mt-1">
+        <div className="row row-cols-1 row-cols-md-3 g-4">
           {adventures.map((adventure) => (
             <Link
               to={`/adventures/${adventure.id}`}
