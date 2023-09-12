@@ -97,11 +97,12 @@ const adventuresSlice = createSlice({
     });
     builder.addCase(createAdventure.rejected, (state, action) => {
       // Update state on login failure
-      state.deletionSuccess = false;
-      state.deletionLoading = false;
-      state.deletionError = true;
-      if (action.error.message === 'Adventure not found') {
-        state.error = 'Adventure not found.';
+      state.creationSuccess = false;
+      state.creationLoading = true;
+      state.creationError = true;
+      if (action.error.message === "Request failed with status code 409") {
+        console.log("yee: ", action.error.message);
+        state.error = "Adventure by this name already exists.";
       }
     });
     builder.addCase(deleteAdventure.pending, (state) => {
@@ -122,9 +123,6 @@ const adventuresSlice = createSlice({
       state.creationSuccess = false;
       state.creationLoading = true;
       state.deletionError = true;
-      if (action.error.message === 'Request failed with status code 409') {
-        state.error = 'Adventure by this name already exists.';
-      }
     });
     builder.addCase(getAllAdventures.pending, () => {});
     builder.addCase(getAllAdventures.fulfilled, (state, action) => {
