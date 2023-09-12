@@ -103,7 +103,6 @@ const adventuresSlice = createSlice({
       state.creationLoading = true;
       state.creationError = true;
       if (action.error.message === 'Request failed with status code 409') {
-        console.log('yee: ', action.error.message);
         state.error = 'Adventure by this name already exists.';
       }
     });
