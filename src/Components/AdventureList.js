@@ -89,7 +89,7 @@ const AdventureList = () => {
         )}
 
         <p className="font-weight-bold fs-3 mt-1 ">
-          Here, you also get to design your own
+          Here, you get to design your own
           {' '}
           <span
             style={{
