@@ -20,7 +20,7 @@ export const createAdventure = createAsyncThunk(
   async ({ formData }) => {
     const { name, selectedPicture, description } = formData;
     const response = await axios.post(
-      'http://127.0.0.1:3000/api/v1/create_adventure',
+      'https://outdoor-adventures.onrender.com/api/v1/create_adventure',
       {
         // user_id: user.id,
         name,
@@ -42,7 +42,9 @@ export const createAdventure = createAsyncThunk(
 );
 
 export const getAllAdventures = createAsyncThunk('adventures/get', async () => {
-  const response = await axios.get('http://127.0.0.1:3000/api/v1/adventures');
+  const response = await axios.get(
+    'https://outdoor-adventures.onrender.com/api/v1/adventures',
+  );
   return response.data;
 });
 
@@ -50,7 +52,7 @@ export const deleteAdventure = createAsyncThunk(
   'adventures/delete',
   async (id) => {
     const response = await axios.delete(
-      `http://127.0.0.1:3000/api/v1/adventures/${id}`,
+      `https://outdoor-adventures.onrender.com/api/v1/adventures/${id}`,
     );
     return response.data;
   },
@@ -58,7 +60,7 @@ export const deleteAdventure = createAsyncThunk(
 
 export const getAnAdventure = createAsyncThunk('adventure/get', async (id) => {
   const response = await axios.get(
-    `http://127.0.0.1:3000/api/v1/adventures/${id}`,
+    `https://outdoor-adventures.onrender.com/api/v1/adventures/${id}`,
   );
   return response.data;
 });
