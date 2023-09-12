@@ -29,3 +29,9 @@ code {
 .bg-none {
   border: none;
 }
+
+.display-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}

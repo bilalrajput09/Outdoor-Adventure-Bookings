@@ -125,7 +125,6 @@ const adventuresSlice = createSlice({
     });
     builder.addCase(getAllAdventures.pending, () => {});
     builder.addCase(getAllAdventures.fulfilled, (state, action) => {
-      // state.adventures.splice(0);
       state.adventures.push(action.payload);
     });
     builder.addCase(getAllAdventures.rejected, () => {});
