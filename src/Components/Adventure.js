@@ -1,5 +1,5 @@
 const Adventure = ({ name, description, picture }) => (
-  <div className="col">
+  <div className="co">
     <div className="card">
       <img
         src={`display-${picture}`}

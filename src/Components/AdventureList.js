@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -9,8 +9,6 @@ import fetchAdventuresData from '../redux/adventureActions';
 
 import Adventure from './Adventure';
 import checkCurrentUser from '../redux/actions/userActions';
-import SearchComponent from './SearchComponent';
-import ModelSearchedAdventures from './ModelSearchedAdventures';
 
 const AdventureList = () => {
   const dispatch = useDispatch();
@@ -46,27 +44,10 @@ const AdventureList = () => {
     navigate('/addAdventure');
   }
 
-  const myInputRef = useRef();
-  function capitalWord(word) {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  }
-  const [searchedAdventures, setSearchedAdventures] = useState([]);
-  const searchAdventures = () => {
-    const sAD = adventures.filter((a) => a.name.startsWith(capitalWord(myInputRef.current.value)));
-    if (sAD !== null) {
-      setSearchedAdventures(sAD);
-    }
-    return [];
-  };
-
   return (
     <>
-      <SearchComponent
-        myInputRef={myInputRef}
-        searchAdventures={searchAdventures}
-      />
-      <ModelSearchedAdventures searchedAdventures={searchedAdventures} />
       <div className="text-center mt-4">
+
         <h1 className="text-center mt-2">Latest Adventures</h1>
         <br />
         {checkCurrentUser() ? (

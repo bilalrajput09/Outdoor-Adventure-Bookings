@@ -4,13 +4,12 @@ import { FcSearch } from 'react-icons/fc';
 
 function SearchComponent({ myInputRef, searchAdventures }) {
   return (
-    <div className="position-absolute top-0 w-80">
+    <div className="position-absolute top-0 w-100 d-flex justify-content-center">
       <div className="row p-2">
         <div
           className="input-group mt-2"
           style={{
-            minWidth: '60vw',
-            marginLeft: '20%',
+            minWidth: '50vw',
           }}
         >
           <input
