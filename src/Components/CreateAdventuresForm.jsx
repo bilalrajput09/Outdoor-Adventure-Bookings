@@ -8,8 +8,6 @@ import {
   resetCreationError,
 } from '../redux/slice/adventureSlice';
 
-import checkCurrentUser from '../redux/actions/userActions';
-
 // CreateAdventuresForm component for adding adventures
 function CreateAdventuresForm() {
   // State variables for categories and selected category
@@ -51,8 +49,9 @@ function CreateAdventuresForm() {
 
   // navigate to adventures index page on successful new adventure creation
   useEffect(() => {
+    console.log('creation success: ', creationSuccess);
     if (creationSuccess) navigate('/');
-  }, [creationSuccess, navigate]);
+  }, [creationSuccess]);
 
   // Effect to update form data when selectedCategory changes
   useEffect(() => {
@@ -89,21 +88,19 @@ function CreateAdventuresForm() {
       .then((data) => {
         setCategories(data);
       })
-      .catch((error) => error);
+      .catch((error) => {
+        console.error('Error loading adventure categories:', error);
+      });
   }, []);
 
   useEffect(() => {
     dispatch(resetCreationError());
-  }, [selectedCategory, dispatch]);
+  }, [selectedCategory]);
 
   // JSX rendering for the component
-
-  if (!checkCurrentUser()) {
-    navigate('/login');
-  }
   return (
     <>
-      <div className="container-fluid vh-100 d-flex justify-content-center mb-5">
+      <div className="container-fluid vh-100 d-flex justify-content-center align-items-center mb-5">
         <Form
           onSubmit={handleSubmit}
           className="container justify-content-center"
