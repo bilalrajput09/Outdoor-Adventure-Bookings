@@ -1,9 +1,9 @@
 const Adventure = ({ name, description, picture }) => (
   <div className="col">
-    <div className="card h-100">
+    <div className="card">
       <img
         src={`display-${picture}`}
-        className="card-img-top"
+        className="card-img-top display-img"
         alt="Adventure"
       />
       <div className="card-body">

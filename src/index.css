@@ -31,7 +31,7 @@ code {
 }
 
 .display-img {
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
+  height: 27vh;
+  width: auto;
+  object-fit: cover;
 }
