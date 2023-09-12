@@ -109,9 +109,9 @@ function CreateAdventuresForm() {
             className="text-center container"
             style={{
               backgroundColor: '#fff',
-              color: '#d35504',
+              color: '#97bf0f',
               borderColor: '#d35504',
-              fontSize: '2.7rem',
+              fontSize: '3rem',
               lineHeight: '100%',
               marginTop: '-80%',
               marginBottom: '2rem',
@@ -134,9 +134,8 @@ function CreateAdventuresForm() {
               onChange={handleAdventureNameChange}
               style={{
                 backgroundColor: '#fff',
-                color: '#d35504',
                 fontWeight: '600',
-                borderColor: '#d35504',
+                borderColor: '#97bf0f',
                 fontSize: '1.3rem',
               }}
             />
@@ -149,9 +148,9 @@ function CreateAdventuresForm() {
                 className="container d-flex justify-content-between"
                 style={{
                   backgroundColor: '#fff',
-                  color: '#d35504',
+                  color: 'inherit',
                   fontWeight: '600',
-                  borderColor: '#d35504',
+                  borderColor: '#97bf0f',
                   fontSize: '1.3rem',
                 }}
                 varient="primary"
@@ -177,7 +176,7 @@ function CreateAdventuresForm() {
                   backgroundColor: '#fff',
                   color: 'black',
                   fontWeight: '600',
-                  borderColor: '#d35504',
+                  borderColor: '#97bf0f',
                   fontSize: '1.3rem',
                 }}
               >
@@ -209,7 +208,7 @@ function CreateAdventuresForm() {
                 backgroundColor: '#fff',
                 color: 'dark-gray',
                 fontWeight: '600',
-                borderColor: '#d35504',
+                borderColor: '#97bf0f',
                 fontSize: '1.3rem',
               }}
             />
@@ -222,8 +221,9 @@ function CreateAdventuresForm() {
             variant="primary"
             style={{
               borderColor: '#d35504',
-              backgroundColor: '#d35504',
-              fontSize: '2rem',
+              color: '#fff',
+              backgroundColor: '#97bf0f',
+              fontSize: '2.3rem',
             }}
           >
             Submit
