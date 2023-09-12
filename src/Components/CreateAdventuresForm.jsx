@@ -49,7 +49,6 @@ function CreateAdventuresForm() {
 
   // navigate to adventures index page on successful new adventure creation
   useEffect(() => {
-    console.log('creation success: ', creationSuccess);
     if (creationSuccess) navigate('/');
   }, [creationSuccess]);
 
@@ -100,7 +99,7 @@ function CreateAdventuresForm() {
   // JSX rendering for the component
   return (
     <>
-      <div className="container-fluid vh-100 d-flex justify-content-center align-items-center mb-5">
+      <div className="container-fluid mt-5 d-flex justify-content-center align-items-center">
         <Form
           onSubmit={handleSubmit}
           className="container justify-content-center"
