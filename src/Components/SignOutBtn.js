@@ -14,7 +14,7 @@ const SignOutBtn = () => {
   return (
     <div className="cursor-pointer">
       <button
-        className="text-center position-relative mt-3   cursor-pointer bg-none btn"
+        className="text-center position-relative cursor-pointer bg-none btn"
         type="button"
         onClick={logOutUser}
       >
