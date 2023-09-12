@@ -8,13 +8,16 @@ const addNewReservation = createAsyncThunk(
       adventureID,
       currentUserID: currentUserObj().id,
     };
-    const response = await fetch('http://localhost:3000/api/v1/reservations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      'https://outdoor-adventures.onrender.com/api/v1/reservations',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservationData),
       },
-      body: JSON.stringify(reservationData),
-    });
+    );
 
     const data = await response.json();
     return [...data.reservations];
@@ -30,7 +33,7 @@ export const fetchUserReservations = createAsyncThunk(
       currentUserID: currentUserObj().id,
     };
     const response = await fetch(
-      'http://localhost:3000/api/v1/fetch_reservations',
+      'https://outdoor-adventures.onrender.com/api/v1/fetch_reservations',
       {
         method: 'POST',
         body: JSON.stringify(userData),
@@ -54,7 +57,7 @@ export const deleteReservation = createAsyncThunk(
     };
 
     const response = await fetch(
-      'http://localhost:3000/api/v1/delete_reservation',
+      'https://outdoor-adventures.onrender.com/api/v1/delete_reservation',
       {
         method: 'DELETE',
         body: JSON.stringify(reservationDetails),

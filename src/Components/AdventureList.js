@@ -19,7 +19,7 @@ const AdventureList = () => {
 
   // get list of adventures from api
   useEffect(() => {
-    fetch('http://127.0.0.1:3000/api/v1/adventures')
+    fetch('https://outdoor-adventures.onrender.com/api/v1/adventures')
       .then((response) => response.json())
       .then((data) => {
         data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
