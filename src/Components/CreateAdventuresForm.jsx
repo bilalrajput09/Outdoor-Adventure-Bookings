@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Dropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 import {
   createAdventure,
   setErrorMessage,
@@ -99,7 +100,10 @@ function CreateAdventuresForm() {
   // JSX rendering for the component
   return (
     <>
-      <div className="container-fluid mt-5 d-flex justify-content-center align-items-center">
+      <div
+        className="container-fluid d-flex justify-content-center align-items-center"
+        style={{ minHeight: '100vh' }} // Add this style
+      >
         <Form
           onSubmit={handleSubmit}
           className="container justify-content-center"
@@ -229,6 +233,9 @@ function CreateAdventuresForm() {
             Submit
           </Button>
         </Form>
+      </div>
+      <div className="fixed-bottom bg-light text-center">
+        <Footer />
       </div>
     </>
   );

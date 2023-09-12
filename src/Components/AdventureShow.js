@@ -6,6 +6,7 @@ import addNewReservation, {
   fetchUserReservations,
   deleteReservation,
 } from '../redux/slice/reservationAction';
+import Footer from './Footer';
 
 import checkCurrentUser from '../redux/actions/userActions';
 
@@ -98,14 +99,28 @@ const AdventureShow = () => {
   return (
     <>
       <h1 className="text-center mb-5">{adventureName}</h1>
-      <div className="card mb-3">
+      <div className="card mb-3" style={{ height: '60vh' }}>
         <div className="row g-0">
           <div className="col-md-8">
-            <img
-              src={`/display-${adventurePicture}`}
-              className="img-fluid rounded-start"
-              alt={`${adventureName}`}
-            />
+            {/* Image container with fixed height and object-fit */}
+            <div
+              className="img-container"
+              style={{
+                height: '100%',
+                overflow: 'hidden', // Hide any overflow
+              }}
+            >
+              <img
+                src={`/display-${adventurePicture}`}
+                className="img-fluid rounded-start"
+                alt={`${adventureName}`}
+                style={{
+                  width: '100%',
+                  height: '60vh', // Set image height to 100% of the parent container
+                  objectFit: 'cover',
+                }}
+              />
+            </div>
           </div>
           <div className="col-md-4 d-flex flex-column">
             <div className="card-body">
@@ -113,8 +128,7 @@ const AdventureShow = () => {
               <p className="card-text">{adventureDescription}</p>
               <p className="card-text">
                 <small className="text-body-secondary mt-auto">
-                  Created at
-                  {' '}
+                  Created at{' '}
                   {formattedDate.toLocaleDateString('en-US', options)}
                 </small>
               </p>
@@ -153,6 +167,9 @@ const AdventureShow = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className="fixed-bottom bg-light text-center">
+        <Footer />
       </div>
     </>
   );

@@ -35,7 +35,9 @@ const NavBar = () => {
   }
   const [searchedAdventures, setSearchedAdventures] = useState([]);
   const searchAdventures = () => {
-    const sAD = adventures.filter((a) => a.name.startsWith(capitalWord(myInputRef.current.value)));
+    const sAD = adventures.filter((a) =>
+      a.name.startsWith(capitalWord(myInputRef.current.value)),
+    );
     if (sAD !== null) {
       setSearchedAdventures(sAD);
     }
@@ -159,8 +161,16 @@ const NavBar = () => {
               <Link
                 to="https://github.com/bilalrajput09"
                 className="link-success"
+                style={{ textDecoration: 'none' }}
               >
-                {' Bilal Ahmed '}
+                {' Bilal A. '}
+              </Link>
+              <Link
+                to="https://github.com/kalbek"
+                className="link-warning"
+                style={{ textDecoration: 'none' }}
+              >
+                {' Kaleb B. '}
               </Link>
               and TEAM
             </p>
