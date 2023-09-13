@@ -15,7 +15,7 @@ export const currentUserObj = () => {
   return false;
 };
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (checkCurrentUser()) {
