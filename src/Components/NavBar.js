@@ -160,12 +160,12 @@ const NavBar = () => {
               </Link>
               <Link
                 to="https://github.com/kalbek"
-                className="link-warning"
+                className="link-success"
                 style={{ textDecoration: 'none' }}
               >
+                ,
                 {' Kaleb B. '}
               </Link>
-              and TEAM
             </p>
           </div>
         </div>

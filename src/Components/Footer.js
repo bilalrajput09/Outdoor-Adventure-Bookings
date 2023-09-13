@@ -19,6 +19,7 @@ const Footer = () => (
             className="link-warning"
             style={{ textDecoration: 'none' }}
           >
+            ,
             {' Kaleb B. '}
           </Link>
         </p>
