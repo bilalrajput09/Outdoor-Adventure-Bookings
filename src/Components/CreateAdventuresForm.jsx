@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Dropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Footer from './Footer';
 import {
   createAdventure,
   setErrorMessage,
@@ -51,7 +50,7 @@ function CreateAdventuresForm() {
   // navigate to adventures index page on successful new adventure creation
   useEffect(() => {
     if (creationSuccess) navigate('/');
-  }, [creationSuccess]);
+  }, [creationSuccess, navigate]);
 
   // Effect to update form data when selectedCategory changes
   useEffect(() => {
@@ -88,14 +87,12 @@ function CreateAdventuresForm() {
       .then((data) => {
         setCategories(data);
       })
-      .catch((error) => {
-        console.error('Error loading adventure categories:', error);
-      });
+      .catch((error) => error);
   }, []);
 
   useEffect(() => {
     dispatch(resetCreationError());
-  }, [selectedCategory]);
+  }, [selectedCategory, dispatch]);
 
   // JSX rendering for the component
   return (
