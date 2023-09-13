@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const setUserInLocalStorage = (user) => {
+  localStorage.setItem('id', JSON.stringify(user));
+};
+
 // Initial state for the userSlice
 const initialState = {
   user: null, // User information
@@ -18,9 +22,12 @@ const initialState = {
 // Async action to log in a user
 export const login = createAsyncThunk('user/login', async (username) => {
   try {
-    const response = await axios.post('http://127.0.0.1:3000/api/v1/login', {
-      username,
-    });
+    const response = await axios.post(
+      'https://outdoor-adventures.onrender.com/api/v1/login',
+      {
+        username,
+      },
+    );
     setUserInLocalStorage(response.data);
     return response.data; // Successful response data
   } catch (error) {
@@ -28,16 +35,15 @@ export const login = createAsyncThunk('user/login', async (username) => {
   }
 });
 
-const setUserInLocalStorage = (user) => {
-  localStorage.setItem('id', JSON.stringify(user));
-};
-
 // Async action to sign up a user
 export const signup = createAsyncThunk('user/signup', async (username) => {
   try {
-    const response = await axios.post('http://127.0.0.1:3000/api/v1/signup', {
-      username,
-    });
+    const response = await axios.post(
+      'https://outdoor-adventures.onrender.com/api/v1/signup',
+      {
+        username,
+      },
+    );
     const user = response.data;
     setUserInLocalStorage(user.user);
     return response.data; // Successful response data
@@ -78,11 +84,11 @@ const userSlice = createSlice({
       state.isLoginLoading = false;
       state.isLoginSuccess = true;
       state.isLoginError = false;
-      state.user = action.payload.user;
+      state.user = action.payload;
       state.message = action.payload.message;
       state.error = null;
     });
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(login.rejected, (state) => {
       // Update state on login failure
       state.isAuthenticated = false;
       state.isLoginSuccess = false;
@@ -108,7 +114,7 @@ const userSlice = createSlice({
       state.message = action.payload;
       state.error = null;
     });
-    builder.addCase(signup.rejected, (state, action) => {
+    builder.addCase(signup.rejected, (state) => {
       // Update state on signup failure
       state.isSignupSuccess = false;
       state.isSignupLoading = false;

@@ -1,15 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+
 import { login } from '../redux/slice/userSlice';
-import { checkCurrentUser } from '../App';
+import checkCurrentUser from '../redux/actions/userActions';
 
 function LoginForm() {
   // Extracting user-related state and functions from Redux
 
-  const { user, error, isAuthenticated, isLoginSuccess, isLoginError } =
-    useSelector((store) => store.user);
+  const {
+    user,
+    error,
+    isAuthenticated,
+    isLoginSuccess,
+    isLoginError,
+    isLoginLoading,
+  } = useSelector((store) => store.user);
   const myInputRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +37,6 @@ function LoginForm() {
     event.preventDefault();
     dispatch(login(myInputRef.current.value));
   };
-
   return (
     <div className="container mt-5">
       <div className="row d-flex justify-content-center">
@@ -45,12 +50,20 @@ function LoginForm() {
               ref={myInputRef}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
-            Login
+
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isLoginLoading}
+          >
+            {isLoginLoading ? 'Logging in...' : 'Login'}
           </button>
+
           <p>{isLoginError && error}</p>
           <p>
-            Don't have an account? <Link to={'/signup'}>Sign up</Link>.
+            Don&apos;t have an account?
+            <Link to="/signup">Sign up</Link>
+            .
           </p>
         </form>
         {/* Display login message if login is successful */}

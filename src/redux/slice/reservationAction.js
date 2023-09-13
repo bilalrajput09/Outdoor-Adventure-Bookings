@@ -5,20 +5,19 @@ const addNewReservation = createAsyncThunk(
   'reservation/add',
   async (adventureID) => {
     const reservationData = {
-      adventureID: adventureID,
+      adventureID,
       currentUserID: currentUserObj().id,
     };
-    const response = await fetch('http://localhost:3000/api/v1/reservations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      'https://outdoor-adventures.onrender.com/api/v1/reservations',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservationData),
       },
-      body: JSON.stringify(reservationData),
-    });
-
-    if (!response.ok) {
-      console.log('The reservation is not created!');
-    }
+    );
 
     const data = await response.json();
     return [...data.reservations];
@@ -34,7 +33,7 @@ export const fetchUserReservations = createAsyncThunk(
       currentUserID: currentUserObj().id,
     };
     const response = await fetch(
-      'http://localhost:3000/api/v1/fetch_reservations',
+      'https://outdoor-adventures.onrender.com/api/v1/fetch_reservations',
       {
         method: 'POST',
         body: JSON.stringify(userData),
@@ -51,14 +50,14 @@ export const fetchUserReservations = createAsyncThunk(
 
 export const deleteReservation = createAsyncThunk(
   'delete/reservation',
-  async (reservation_id) => {
+  async (reservationId) => {
     const reservationDetails = {
-      reservation_id: reservation_id,
+      reservation_id: reservationId,
       currentUserID: currentUserObj().id,
     };
 
     const response = await fetch(
-      'http://localhost:3000/api/v1/delete_reservation',
+      'https://outdoor-adventures.onrender.com/api/v1/delete_reservation',
       {
         method: 'DELETE',
         body: JSON.stringify(reservationDetails),
@@ -67,10 +66,6 @@ export const deleteReservation = createAsyncThunk(
         },
       },
     );
-
-    if (!response.ok) {
-      console.log('Something went wrong');
-    }
     const data = await response.json();
 
     return [...data.reservations];

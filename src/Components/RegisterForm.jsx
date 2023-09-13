@@ -1,15 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { signup } from '../redux/slice/userSlice';
-import { useEffect } from 'react';
-import { checkCurrentUser } from '../App';
+
+import checkCurrentUser from '../redux/actions/userActions';
 
 function RegisterForm() {
   // Extracting user-related state and functions from Redux
-  const { user, isAuthenticated, isSignupSuccess, isSignupError } = useSelector(
-    (store) => store.user,
-  );
+  const {
+    user,
+    isAuthenticated,
+    isSignupSuccess,
+    isSignupError,
+    isSignupLoading,
+  } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const myInputRef = useRef();
@@ -50,11 +54,18 @@ function RegisterForm() {
               ref={myInputRef}
             />
           </div>
-          <button type="submit" className="btn btn-primary mb-3">
-            Signup
+          <button
+            type="submit"
+            className="btn btn-primary mb-3"
+            disabled={isSignupLoading}
+          >
+            {isSignupLoading ? 'Working' : 'Signup'}
           </button>
           <p>
-            Already have an account? <Link to={'/login'}>Login</Link>.
+            Already have an account?
+            {' '}
+            <Link to="/login">Login</Link>
+            .
           </p>
         </form>
       </div>
