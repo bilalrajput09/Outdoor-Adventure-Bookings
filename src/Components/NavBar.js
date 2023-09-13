@@ -43,10 +43,13 @@ const NavBar = () => {
   return (
     <div className=" bg-body-tertiary mb-5">
       <div className="d-flex justify-content-between">
-        <SearchComponent
-          myInputRef={myInputRef}
-          searchAdventures={searchAdventures}
-        />
+        {user !== null && (
+          <SearchComponent
+            myInputRef={myInputRef}
+            searchAdventures={searchAdventures}
+          />
+        )}
+
         <ModelSearchedAdventures searchedAdventures={searchedAdventures} />
         <img
           src={navImg}
