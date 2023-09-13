@@ -11,7 +11,7 @@ const Footer = () => (
             className="link-warning"
             style={{ textDecoration: 'none' }}
           >
-            {' Bilal Ahmed '}
+            {' Bilal Ahmed'}
           </Link>
           &nbsp;
           <Link
@@ -21,12 +21,12 @@ const Footer = () => (
           >
             {' Kaleb B. '}
           </Link>
-          and TEAM
         </p>
         <p>
           <Link to="/" className="text-white">
             Privacy Policy
-          </Link>{' '}
+          </Link>
+          {' '}
           |
           <Link to="/" className="text-white">
             Terms of Service

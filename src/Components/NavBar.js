@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
 import {
@@ -18,7 +18,6 @@ import ModelSearchedAdventures from './ModelSearchedAdventures';
 const NavBar = () => {
   const user = useSelector((state) => state.user.user);
   const [adventures, setAdventures] = useState([]);
-  const location = useLocation();
   useEffect(() => {
     fetch('https://outdoor-adventures.onrender.com/api/v1/adventures')
       .then((response) => response.json())
@@ -35,9 +34,7 @@ const NavBar = () => {
   }
   const [searchedAdventures, setSearchedAdventures] = useState([]);
   const searchAdventures = () => {
-    const sAD = adventures.filter((a) =>
-      a.name.startsWith(capitalWord(myInputRef.current.value)),
-    );
+    const sAD = adventures.filter((a) => a.name.startsWith(capitalWord(myInputRef.current.value)));
     if (sAD !== null) {
       setSearchedAdventures(sAD);
     }
@@ -46,24 +43,20 @@ const NavBar = () => {
   return (
     <div className=" bg-body-tertiary">
       <div className="d-flex justify-content-between">
-        {location.pathname === '/' && (
-          <>
-            <SearchComponent
-              myInputRef={myInputRef}
-              searchAdventures={searchAdventures}
-            />
-            <ModelSearchedAdventures searchedAdventures={searchedAdventures} />
-            <img
-              src={navImg}
-              alt="hamburgger"
-              className="pt-4 pb-3 ms-4"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasWithBothOptions"
-              aria-controls="offcanvasWithBothOptions"
-            />
-          </>
-        )}
+        <SearchComponent
+          myInputRef={myInputRef}
+          searchAdventures={searchAdventures}
+        />
+        <ModelSearchedAdventures searchedAdventures={searchedAdventures} />
+        <img
+          src={navImg}
+          alt="hamburgger"
+          className="pt-4 pb-3 ms-4"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasWithBothOptions"
+          aria-controls="offcanvasWithBothOptions"
+        />
       </div>
 
       <div

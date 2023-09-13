@@ -6,7 +6,6 @@ import addNewReservation, {
   fetchUserReservations,
   deleteReservation,
 } from '../redux/slice/reservationAction';
-import Footer from './Footer';
 
 import checkCurrentUser from '../redux/actions/userActions';
 
@@ -128,7 +127,8 @@ const AdventureShow = () => {
               <p className="card-text">{adventureDescription}</p>
               <p className="card-text">
                 <small className="text-body-secondary mt-auto">
-                  Created at{' '}
+                  Created at
+                  {' '}
                   {formattedDate.toLocaleDateString('en-US', options)}
                 </small>
               </p>
@@ -167,9 +167,6 @@ const AdventureShow = () => {
             )}
           </div>
         </div>
-      </div>
-      <div className="fixed-bottom bg-light text-center">
-        <Footer />
       </div>
     </>
   );
