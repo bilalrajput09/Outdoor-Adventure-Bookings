@@ -41,7 +41,7 @@ const NavBar = () => {
     return [];
   };
   return (
-    <div className=" bg-body-tertiary">
+    <div className=" bg-body-tertiary mb-5">
       <div className="d-flex justify-content-between">
         <SearchComponent
           myInputRef={myInputRef}

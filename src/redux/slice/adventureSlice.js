@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import fetchAdventuresData from '../adventureActions';
 
 const adventuresInitialState = {
   adventures: [],
@@ -81,9 +80,6 @@ const adventuresSlice = createSlice({
     }),
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAdventuresData.fulfilled, () => {
-      // state.adventures = [...action.payload];
-    });
     builder.addCase(createAdventure.pending, (state) => {
       // Set loading flags for login
       state.creationSuccess = false;

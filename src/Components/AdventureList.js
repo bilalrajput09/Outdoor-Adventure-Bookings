@@ -5,8 +5,6 @@ import {
   resetCreationError,
   getAllAdventures,
 } from '../redux/slice/adventureSlice';
-import fetchAdventuresData from '../redux/adventureActions';
-
 import Adventure from './Adventure';
 import checkCurrentUser from '../redux/actions/userActions';
 
@@ -35,9 +33,7 @@ const AdventureList = () => {
   }, [dispatch]);
   // Fetch adventure data from the server on component mount
   const user = localStorage.getItem('id');
-  useEffect(() => {
-    dispatch(fetchAdventuresData());
-  }, [dispatch, navigate, isAuthenticated, user]);
+  useEffect(() => {}, [dispatch, navigate, isAuthenticated, user]);
 
   // handle adding adventure categories
   function handleAddAdventureButtonClick() {
@@ -47,7 +43,6 @@ const AdventureList = () => {
   return (
     <>
       <div className="text-center">
-
         <br />
         {checkCurrentUser() ? (
           <button
@@ -101,7 +96,6 @@ const AdventureList = () => {
             adventures!!
           </span>
         </p>
-
       </div>
       <h3 className="text-center-not mt-2">Latest Adventures</h3>
       {/* {adventures.length} */}

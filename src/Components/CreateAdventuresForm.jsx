@@ -101,8 +101,7 @@ function CreateAdventuresForm() {
   return (
     <>
       <div
-        className="container-fluid d-flex justify-content-center align-items-center"
-        style={{ minHeight: '100vh' }} // Add this style
+        className="container-fluid d-flex justify-content-center align-items-center" // Add this style
       >
         <Form
           onSubmit={handleSubmit}
@@ -233,9 +232,6 @@ function CreateAdventuresForm() {
             Submit
           </Button>
         </Form>
-      </div>
-      <div className="fixed-bottom bg-light text-center">
-        <Footer />
       </div>
     </>
   );
