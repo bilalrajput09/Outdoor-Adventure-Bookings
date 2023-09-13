@@ -1,16 +1,24 @@
-import { useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAnAdventure } from '../redux/slice/adventureSlice';
-import addNewReservation from '../redux/slice/reservationAction';
-import { deleteAdventure } from '../redux/slice/adventureSlice';
-import {
+import { getAnAdventure, deleteAdventure } from '../redux/slice/adventureSlice';
+import addNewReservation, {
   fetchUserReservations,
   deleteReservation,
 } from '../redux/slice/reservationAction';
-import { checkCurrentUser } from '../App';
 
+import checkCurrentUser from '../redux/actions/userActions';
+
+const checkReservation = (reservations, id) => {
+  const idInt = +id;
+  const index = reservations.findIndex(
+    (reservation) => reservation.adventure_id === idInt,
+  );
+  if (index !== -1) {
+    return true;
+  }
+  return false;
+};
 const AdventureShow = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -19,13 +27,11 @@ const AdventureShow = () => {
     (store) => store.adventures.currentAdventure,
   );
 
-  const { deletionSuccess, deletionLoading, deletionError } = useSelector(
-    (state) => state.adventures,
-  );
+  const { deletionSuccess } = useSelector((state) => state.adventures);
   const user = useSelector((state) => state.user.user);
 
   // Add code to fetch adventure details using the adventure ID
-  const [formattedDate, setFormattedDate] = useState(new Date());
+  const [formattedDate] = useState(new Date());
   const [adventureName, setAdventureName] = useState('');
   const [adventurePicture, setAdventurePicture] = useState('');
   const [adventureDescription, setAdventureDescription] = useState('');
@@ -54,19 +60,23 @@ const AdventureShow = () => {
     }
   }, [currentAdventure]);
 
+  const reservations = useSelector((state) => state.reservations.reservations);
+  const [isReserved, setIsReserved] = useState(
+    checkReservation(reservations, id),
+  );
   const reserveHandler = () => {
     dispatch(addNewReservation(id));
+    setIsReserved(true);
   };
-  const reservations = useSelector((state) => state.reservations.reservations);
   const deleteReserveHandler = () => {
     const idInt = +id;
-    const reservation_index = reservations.findIndex((reservation) => {
-      return reservation.adventure_id === idInt;
-    });
+    const reservationIndex = reservations.findIndex(
+      (reservation) => reservation.adventure_id === idInt,
+    );
 
-    const reservation_id = reservations[reservation_index].id;
-    dispatch(deleteReservation(reservation_id));
-    navigate('/');
+    const reservationId = reservations[reservationIndex].id;
+    dispatch(deleteReservation(reservationId));
+    setIsReserved(false);
   };
 
   // deleting adventure
@@ -76,26 +86,40 @@ const AdventureShow = () => {
 
   // redirect to adventure list on successfull deletion
   useEffect(() => {
-    deletionSuccess && navigate('/');
-  }, [deletionSuccess]);
+    if (deletionSuccess) {
+      navigate('/');
+    }
+  }, [deletionSuccess, navigate]);
 
   const handleDelete = () => {
     dispatch(deleteAdventure(id));
   };
 
-  const isReserved = checkReservation(reservations, id);
-
   return (
     <>
       <h1 className="text-center mb-5">{adventureName}</h1>
-      <div className="card mb-3">
+      <div className="card mb-3" style={{ height: '60vh' }}>
         <div className="row g-0">
           <div className="col-md-8">
-            <img
-              src={`/display-${adventurePicture}`}
-              className="img-fluid rounded-start"
-              alt={`${adventureName} image`}
-            ></img>
+            {/* Image container with fixed height and object-fit */}
+            <div
+              className="img-container"
+              style={{
+                height: '100%',
+                overflow: 'hidden', // Hide any overflow
+              }}
+            >
+              <img
+                src={`/display-${adventurePicture}`}
+                className="img-fluid rounded-start"
+                alt={`${adventureName}`}
+                style={{
+                  width: '100%',
+                  height: '60vh', // Set image height to 100% of the parent container
+                  objectFit: 'cover',
+                }}
+              />
+            </div>
           </div>
           <div className="col-md-4 d-flex flex-column">
             <div className="card-body">
@@ -103,7 +127,8 @@ const AdventureShow = () => {
               <p className="card-text">{adventureDescription}</p>
               <p className="card-text">
                 <small className="text-body-secondary mt-auto">
-                  Created at{' '}
+                  Created at
+                  {' '}
                   {formattedDate.toLocaleDateString('en-US', options)}
                 </small>
               </p>
@@ -115,6 +140,7 @@ const AdventureShow = () => {
                     {isReserved ? (
                       <button
                         className="btn btn-warning"
+                        type="button"
                         onClick={deleteReserveHandler}
                       >
                         Cancel Reservation
@@ -122,12 +148,17 @@ const AdventureShow = () => {
                     ) : (
                       <button
                         className="btn btn-success"
+                        type="button"
                         onClick={reserveHandler}
                       >
                         Reserve
                       </button>
                     )}
-                    <button className="btn btn-danger" onClick={handleDelete}>
+                    <button
+                      className="btn btn-danger"
+                      type="button"
+                      onClick={handleDelete}
+                    >
                       Delete Adventure
                     </button>
                   </div>
@@ -142,15 +173,3 @@ const AdventureShow = () => {
 };
 
 export default AdventureShow;
-
-const checkReservation = (reservations, id) => {
-  const idInt = +id;
-  const index = reservations.findIndex((reservation) => {
-    return reservation.adventure_id === idInt;
-  });
-  if (index !== -1) {
-    return true;
-  } else {
-    return false;
-  }
-};

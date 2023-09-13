@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { signup } from '../redux/slice/userSlice';
-import { useEffect } from 'react';
-import { checkCurrentUser } from '../App';
+
+import checkCurrentUser from '../redux/actions/userActions';
 
 function RegisterForm() {
   // Extracting user-related state and functions from Redux
@@ -62,7 +62,10 @@ function RegisterForm() {
             {isSignupLoading ? 'Working' : 'Signup'}
           </button>
           <p>
-            Already have an account? <Link to={'/login'}>Login</Link>.
+            Already have an account?
+            {' '}
+            <Link to="/login">Login</Link>
+            .
           </p>
         </form>
       </div>

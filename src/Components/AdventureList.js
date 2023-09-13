@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { resetCreationError } from '../redux/slice/adventureSlice';
-import fetchAdventuresData from '../redux/adventureActions';
-import { getAllAdventures } from '../redux/slice/adventureSlice';
+import {
+  resetCreationError,
+  getAllAdventures,
+} from '../redux/slice/adventureSlice';
 import Adventure from './Adventure';
-import { checkCurrentUser } from '../App';
+import checkCurrentUser from '../redux/actions/userActions';
 
 const AdventureList = () => {
   const dispatch = useDispatch();
@@ -14,15 +15,13 @@ const AdventureList = () => {
 
   // get list of adventures from api
   useEffect(() => {
-    fetch('http://127.0.0.1:3000/api/v1/adventures')
+    fetch('https://outdoor-adventures.onrender.com/api/v1/adventures')
       .then((response) => response.json())
       .then((data) => {
         data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setAdventures(data);
       })
-      .catch((error) => {
-        console.error('Error loading adventure categories:', error);
-      });
+      .catch((error) => error);
   }, []);
   // Check if the user is authenticated
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -31,12 +30,10 @@ const AdventureList = () => {
   useEffect(() => {
     dispatch(resetCreationError());
     dispatch(getAllAdventures());
-  }, []);
+  }, [dispatch]);
   // Fetch adventure data from the server on component mount
   const user = localStorage.getItem('id');
-  useEffect(() => {
-    dispatch(fetchAdventuresData());
-  }, [dispatch, navigate, isAuthenticated, user]);
+  useEffect(() => {}, [dispatch, navigate, isAuthenticated, user]);
 
   // handle adding adventure categories
   function handleAddAdventureButtonClick() {
@@ -45,12 +42,12 @@ const AdventureList = () => {
 
   return (
     <>
-      <div className="text-center mt-4">
-        <h1 className="text-center mt-2">Latest Adventures</h1>
+      <div className="text-center">
         <br />
         {checkCurrentUser() ? (
           <button
             className="btn btn-lg btn-primary"
+            type="button"
             style={{
               backgroundColor: '#97bf0f',
               color: '#fff',
@@ -65,7 +62,7 @@ const AdventureList = () => {
         ) : (
           <>
             <Link
-              to={'/signup'}
+              to="/signup"
               className="btn"
               style={{
                 backgroundColor: '#97bf0f',
@@ -78,13 +75,17 @@ const AdventureList = () => {
               Signup!
             </Link>
             <p className="mt-3">
-              Already have an account? <Link to={'/login'}>Login</Link>.
+              Already have an account?
+              {' '}
+              <Link to="/login">Login</Link>
+              .
             </p>
           </>
         )}
 
-        <p className="font-weight-bold fs-3 mt-4 ">
-          Here, you also get to design your own{' '}
+        <p className="font-weight-bold fs-3 mt-1 ">
+          Here, you get to design your own
+          {' '}
           <span
             style={{
               color: '#d35504',
@@ -96,12 +97,13 @@ const AdventureList = () => {
           </span>
         </p>
       </div>
+      <h3 className="text-center-not mt-2">Latest Adventures</h3>
       {/* {adventures.length} */}
       {adventures.length > 0 && (
-        <div className="row row-cols-1 row-cols-md-3 g-4 mt-1">
+        <div className="row row-cols-1 row-cols-md-3 g-4">
           {adventures.map((adventure) => (
             <Link
-              to={'/adventures/' + adventure.id}
+              to={`/adventures/${adventure.id}`}
               key={adventure.id}
               className="btn"
             >
@@ -121,11 +123,7 @@ const AdventureList = () => {
         <div className="row row-cols-1 row-cols-md-3 g-4 mt-1">
           <div className="col">
             <div className="card h-100">
-              <img
-                src="/sad.png"
-                className="card-img-top"
-                alt="Adventure"
-              ></img>
+              <img src="/sad.png" className="card-img-top" alt="Adventure" />
               <div className="card-body">
                 <h5 className="card-title">No Adventures</h5>
                 <p className="card-text">
