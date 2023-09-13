@@ -49,6 +49,8 @@
 
 - [Link to Backend Project](https://github.com/bilalrajput09/Outdoor_Adventure_Bookings_Backend)
 
+-[DEPLOYMENT LINK]()
+
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -86,12 +88,6 @@ npm test
 
 <!-- AUTHORS -->
 
-👤 **Daniel Kigozi**
-
-- GitHub: [Daniel-Kigozi](https://github.com/Daniel-Kigozi)
-- Twitter: [@DanielKigozi15](https://twitter.com/@DanielKigozi15)
-- LinkedIn: [daniel-kigozi-375182208/](https://www.linkedin.com/in/daniel-kigozi-375182208/)
-
 👤 **Bilal Ahmed**
 
 GitHub: [@bilalrajput09](https://github.com/bilalrajput09)
@@ -103,6 +99,12 @@ LinkedIn: [LinkedIn](https://www.linkedin.com/in/bilal-ahmed-18b12019a/)
 [github](https://github.com/kalbek)
 [portfolio](https://kalbek.github.io/Portfolio/)
 [linkedin](https://www.linkedin.com/in/kaleb-nuramo/)
+
+👤 **Daniel Kigozi**
+
+- GitHub: [Daniel-Kigozi](https://github.com/Daniel-Kigozi)
+- Twitter: [@DanielKigozi15](https://twitter.com/@DanielKigozi15)
+- LinkedIn: [daniel-kigozi-375182208/](https://www.linkedin.com/in/daniel-kigozi-375182208/)
 
 ## Core Features <a name="core-features"></a>
 
