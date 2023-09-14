@@ -13,10 +13,11 @@
 - [📖 About the Project](#about-project)
   - [🦘 Kanban Board](#kanban-board)
   - [🧑‍🤝‍🧑 Project Participants](#project-participants)
+  - [🔗 Link to backend project](#backend-project)
+  - [🚀 Link to Live Demo](#live-demo)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -38,11 +39,17 @@
 
 - Booking outdoor adventure is a platform where users can explore and book thrilling outdoor activities and adventures. The website can offer a range of experiences such as hiking, rock climbing, kayaking, camping trips, wildlife tours, and more.
   
-## 🛠 Kanban Board <a name="kanban-board"></a>
+## 🦘 Kanban Board <a name="kanban-board"></a>
 - [Click to see screenshot of the initial state of Kanban board]()
 
-## 🛠 Project Participants <a name="project-participants"></a>
+## 🧑‍🤝‍🧑 Project Participants <a name="project-participants"></a>
 - There are 3 people involved in this project: [Bilal Ahmed](https://github.com/bilalrajput09), [Kaleb Bekele](https://github.com/kalbek) and [Daniel Kigozi](https://github.com/Daniel-Kigozi)
+
+## 🔗Link to Backend Project <a name="backend-project"></a>
+- [Link to Backend Project](https://github.com/bilalrajput09/Outdoor_Adventure_Bookings_Backend)
+
+## 🚀 Link to Live preview (Deployed Project) <a name="live-demo"></a>
+- [DEPLOYMENT LINK]()
   
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -52,12 +59,6 @@
 - Bootstrap
 - React-Bootstrap
 - React-Icons
-
-## 🚀 Backend Project <a name="live-demo"></a>
-
-- [Link to Backend Project](https://github.com/bilalrajput09/Outdoor_Adventure_Bookings_Backend)
-
--[DEPLOYMENT LINK]()
 
 <!-- GETTING STARTED -->
 
