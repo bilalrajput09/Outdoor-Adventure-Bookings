@@ -11,6 +11,8 @@
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
+  - [🛠 Kanban Board](#kanban-board)
+  - - [🛠 Project Participants](#project-participants)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
@@ -34,8 +36,14 @@
 
 # 📖 Outdoor Adventure Booking <a name="about-project"></a>
 
-- Booking outdoor adventure is a platform where users can explore and book various thrilling outdoor activities and adventures. The website can offer a range of experiences such as hiking, rock climbing, kayaking, camping trips, wildlife tours, and more.
+- Booking outdoor adventure is a platform where users can explore and book thrilling outdoor activities and adventures. The website can offer a range of experiences such as hiking, rock climbing, kayaking, camping trips, wildlife tours, and more.
+  
+## 🛠 Kanban Board <a name="kanban-board"></a>
+- [Click to see screenshot of the initial state of Kanban board]()
 
+## 🛠 Project Participants <a name="project-participants"></a>
+- There are 3 people involved in this project: [Bilal Ahmed](https://github.com/bilalrajput09), [Kaleb Bekele](https://github.com/kalbek) and [Daniel Kigozi](https://github.com/Daniel-Kigozi)
+  
 ## 🛠 Built With <a name="built-with"></a>
 
 - React
