@@ -11,8 +11,8 @@
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
-  - [🛠 Kanban Board](#kanban-board)
-  - - [🛠 Project Participants](#project-participants)
+  - [🦘 Kanban Board](#kanban-board)
+  - [🧑‍🤝‍🧑 Project Participants](#project-participants)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
