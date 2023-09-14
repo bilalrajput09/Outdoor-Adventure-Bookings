@@ -40,7 +40,7 @@
 - Booking outdoor adventure is a platform where users can explore and book thrilling outdoor activities and adventures. The website can offer a range of experiences such as hiking, rock climbing, kayaking, camping trips, wildlife tours, and more.
   
 ## 🦘 Kanban Board <a name="kanban-board"></a>
-- [Click to see screenshot of the initial state of Kanban board]()
+- [Click to see a screenshot of the initial state of the Kanban board](https://user-images.githubusercontent.com/116716918/264700987-1cc6ac7e-0a59-4ba2-bbc5-64f11241cb8b.png)
 
 ## 🧑‍🤝‍🧑 Project Participants <a name="project-participants"></a>
 - There are 3 people involved in this project: [Bilal Ahmed](https://github.com/bilalrajput09), [Kaleb Bekele](https://github.com/kalbek) and [Daniel Kigozi](https://github.com/Daniel-Kigozi)
@@ -49,7 +49,7 @@
 - [Link to Backend Project](https://github.com/bilalrajput09/Outdoor_Adventure_Bookings_Backend)
 
 ## 🚀 Link to Live preview (Deployed Project) <a name="live-demo"></a>
-- [DEPLOYMENT LINK]()
+- [DEPLOYMENT LINK](https://outdoor-adventures-booking.onrender.com/)
   
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -80,20 +80,20 @@ git clone https://github.com/bilalrajput09/Outdoor-Adventure-Bookings.git
 
 Install this project with:
 
-cd Outdoor-Adventure-Bookings
-npm install
+```cd Outdoor-Adventure-Bookings```
+```npm install```
 
 ### Usage
 
 To run the project, execute the following command:
 
-npm start
+```npm start```
 
 ### Run tests
 
 To run tests, run the following command:
 
-npm test
+```npm test```
 
 <!-- AUTHORS -->
 
@@ -169,8 +169,8 @@ Feel free to check the [issues page](https://github.com/bilalrajput09/Outdoor-Ad
 If you like this project please give it a star!
 
 <!-- ACKNOWLEDGEMENTS -->
-
-I would like to acknowledge [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) the author of the original design.
+- Most of all we would like to present our utmost gratitude to all Microverse staff, who gave all they have to see us reach this phase and who never rest unless they see us land a decent job.
+- We would like to acknowledge [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) the author of the original design on behance.
 
 <!-- LICENSE -->
 
