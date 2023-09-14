@@ -30,7 +30,6 @@
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ](#faq)
 - [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
@@ -169,10 +168,11 @@ Feel free to check the [issues page](https://github.com/bilalrajput09/Outdoor-Ad
 If you like this project please give it a star!
 
 <!-- ACKNOWLEDGEMENTS -->
+
+## ⭐️ ACKNOWLEDGEMENTS <a name="acknowledgements"></a>
 - Most of all we would like to present our utmost gratitude to all Microverse staff, who gave all they have to see us reach this phase and who never rest unless they see us land a decent job.
 - We would like to acknowledge [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) the author of the original design on behance.
 
 <!-- LICENSE -->
-
-License <a name="license"></a>
-This project is [MIT](./LICENSE.MD) licensed.
+## ⭐️ License <a name="license"></a>
+- This project is [MIT](./LICENSE.MD) licensed.
