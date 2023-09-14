@@ -16,16 +16,15 @@
   - [🔗 Link to backend project](#backend-project)
   - [🚀 Link to Live Demo](#live-demo)
   - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
+    - [🤖 Tech Stack](#tech-stack)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
+- [📺 Key Features](#key-features)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
@@ -36,7 +35,7 @@
 
 # 📖 Outdoor Adventure Booking <a name="about-project"></a>
 
-- Booking outdoor adventure is a platform where users can explore and book thrilling outdoor activities and adventures. The website can offer a range of experiences such as hiking, rock climbing, kayaking, camping trips, wildlife tours, and more.
+- Outdoor adventure booking website is a platform where users can explore and book thrilling outdoor activities and adventures. The website can offer a range of experiences such as hiking, rock climbing, kayaking, camping trips, wildlife tours, and more.
   
 ## 🦘 Kanban Board <a name="kanban-board"></a>
 - [Click to see a screenshot of the initial state of the Kanban board](https://user-images.githubusercontent.com/116716918/264700987-1cc6ac7e-0a59-4ba2-bbc5-64f11241cb8b.png)
@@ -48,10 +47,10 @@
 - [Link to Backend Project](https://github.com/bilalrajput09/Outdoor_Adventure_Bookings_Backend)
 
 ## 🚀 Link to Live preview (Deployed Project) <a name="live-demo"></a>
-- [DEPLOYMENT LINK](https://outdoor-adventures-booking.onrender.com/)
+- [Live Preview](https://outdoor-adventures-booking.onrender.com/)
   
 ## 🛠 Built With <a name="built-with"></a>
-
+### 🤖 Tech stack <a name="tech-stack"></a>
 - React
 - Redux & Redux-Toolkit
 - React-Router
@@ -59,54 +58,55 @@
 - React-Bootstrap
 - React-Icons
 
-<!-- GETTING STARTED -->
-
 ## 💻 Getting Started <a name="getting-started"></a>
 
-To get a local copy up and running, follow these steps.
-
+#### To get a local copy up and running, follow these steps.
 ```
   git clone https://github.com/bilalrajput09/Outdoor-Adventure-Bookings.git
 ```
 
-### Setup
+### Setup <a name="setup"></a>
 
-Clone this repository to your desired folder:
+#### Clone this repository to your desired folder
+```git clone https://github.com/bilalrajput09/Outdoor-Adventure-Bookings.git```
 
-git clone https://github.com/bilalrajput09/Outdoor-Adventure-Bookings.git
+### Prerequsites <a name="prerequsites"></a>
 
-### Install
+#### You need the following tools on your computer:
+- Vscode or any convenient code editor
+- Node js 
+  
+### Install <a name="install"></a>
 
-Install this project with:
+#### Commands to install the project:
+- move to the project directory after cloning it (if not already there) ```cd Outdoor-Adventure-Bookings```
+- npm install with this command ```npm install```
 
-```cd Outdoor-Adventure-Bookings```
-```npm install```
+### Usage <a name="usage"></a>
 
-### Usage
-
-To run the project, execute the following command:
+#### To run the project, execute the following command:
 
 ```npm start```
 
-### Run tests
+### Run tests <a name="run-tests"></a>
 
-To run tests, run the following command:
+#### To run tests, run the following command:
 
 ```npm test```
 
-<!-- AUTHORS -->
-
+### Authors <a name="authors"></a>
+#### Here are the team members who were involved in this project (it was an awesome journey):
 👤 **Bilal Ahmed**
 
-GitHub: [@bilalrajput09](https://github.com/bilalrajput09)
-Twitter: [@bilal_rajput09](https://twitter.com/bilal_rajput09)
-LinkedIn: [LinkedIn](https://www.linkedin.com/in/bilal-ahmed-18b12019a/)
+- GitHub: [@bilalrajput09](https://github.com/bilalrajput09)
+- Twitter: [@bilal_rajput09](https://twitter.com/bilal_rajput09)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/bilal-ahmed-18b12019a/)
 
 👤 **Kaleb Bekele**
 
-[github](https://github.com/kalbek)
-[portfolio](https://kalbek.github.io/Portfolio/)
-[linkedin](https://www.linkedin.com/in/kaleb-nuramo/)
+- GitHub: [github](https://github.com/kalbek)
+- Twitter: [portfolio](https://kalbek.github.io/Portfolio/)
+- LinkedIn: [linkedin](https://www.linkedin.com/in/kaleb-nuramo/)
 
 👤 **Daniel Kigozi**
 
@@ -114,7 +114,7 @@ LinkedIn: [LinkedIn](https://www.linkedin.com/in/bilal-ahmed-18b12019a/)
 - Twitter: [@DanielKigozi15](https://twitter.com/@DanielKigozi15)
 - LinkedIn: [daniel-kigozi-375182208/](https://www.linkedin.com/in/daniel-kigozi-375182208/)
 
-## Core Features <a name="core-features"></a>
+## 📺 Key Features <a name="key-features"></a>
 
 - User Registration and Authentication: Allow users to sign up and log in to the platform using their credentials.
 
@@ -158,14 +158,14 @@ LinkedIn: [LinkedIn](https://www.linkedin.com/in/bilal-ahmed-18b12019a/)
 
 ## 🤝 Contributing <a name="contributing"></a>
 
-Contributions, issues, and feature requests are welcome!
-Feel free to check the [issues page](https://github.com/bilalrajput09/Outdoor-Adventure-Bookings/issues).
+- Contributions, issues, and feature requests are welcome!
+- Feel free to check the [issues page](https://github.com/bilalrajput09/Outdoor-Adventure-Bookings/issues).
 
 <!-- SUPPORT -->
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project please give it a star!
+- If you like this project please give it a star!
 
 <!-- ACKNOWLEDGEMENTS -->
 
