@@ -170,8 +170,8 @@
 <!-- ACKNOWLEDGEMENTS -->
 
 ## ⭐️ Acknowledgements <a name="acknowledgements"></a>
-- Most of all we would like to present our utmost gratitude to all Microverse staff, who gave all they have to see us reach this phase and who never rest unless they see us land a decent job.
-- We would like to acknowledge [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) the author of the original design on behance.
+- We would like to express our deepest gratitude to the entire Microverse staff. Their unwavering support and dedication have been instrumental in helping us reach this phase. They have gone above and beyond to ensure that we are well-equipped and prepared to land a decent job. We are truly grateful for their tireless efforts and unwavering commitment to our success.
+- We would like to express our gratitude to [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign), the author of the original design on Behance.
 
 <!-- LICENSE -->
 ## ⭐️ License <a name="license"></a>
