@@ -29,6 +29,7 @@ const Footer = () => (
           </Link>
           {' '}
           |
+          {' '}
           <Link to="/" className="text-white">
             Terms of Service
           </Link>

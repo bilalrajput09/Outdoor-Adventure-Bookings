@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useRef, useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   BsFacebook,
   BsWhatsapp,
@@ -12,45 +12,20 @@ import {
 import navImg from '../assets/images/menu.png';
 import './NavBar.css';
 import logo from '../assets/images/mountain-adventure-club-logo-design-template-f30d0b2135369f3d04623f458d7a8714_screen.jpg';
-import SearchComponent from './SearchComponent';
-import ModelSearchedAdventures from './ModelSearchedAdventures';
 
 const NavBar = () => {
   const user = useSelector((state) => state.user.user);
-  const [adventures, setAdventures] = useState([]);
   useEffect(() => {
     fetch('https://outdoor-adventures.onrender.com/api/v1/adventures')
       .then((response) => response.json())
       .then((data) => {
         data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
-        setAdventures(data);
       })
       .catch((error) => error);
   }, []);
-  const myInputRef = useRef();
-  function capitalWord(word) {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  }
-  const [searchedAdventures, setSearchedAdventures] = useState([]);
-  const searchAdventures = () => {
-    const sAD = adventures.filter((a) => a.name.startsWith(capitalWord(myInputRef.current.value)));
-    if (sAD !== null) {
-      setSearchedAdventures(sAD);
-    }
-    return [];
-  };
   return (
     <div className=" bg-body-tertiary mb-5">
       <div className="d-flex justify-content-between">
-        {user !== null && (
-          <SearchComponent
-            myInputRef={myInputRef}
-            searchAdventures={searchAdventures}
-          />
-        )}
-
-        <ModelSearchedAdventures searchedAdventures={searchedAdventures} />
         <img
           src={navImg}
           alt="hamburgger"
